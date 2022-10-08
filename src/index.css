@@ -34,10 +34,10 @@ code {
   bottom: 0;
 }
 .startBtn {
+  background-color: var(--primaryBg);
   border: 2px black outset;
   border-top-color: white;
   border-left-color: white;
-
   font-weight: bold;
   font-size: 1.5rem;
   border-radius: 0;
@@ -45,6 +45,22 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.btnContentWrapper {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pressed {
+  border: 2px inset;
+  border-bottom-color: white;
+  border-right-color: white;
+}
+.pressed .btnContentWrapper {
+  border: 2px dotted;
+  height: 80%;
 }
 .startBtnIcon {
   height: 80%;
