@@ -14,6 +14,6 @@ test("opens Start menu when start button is click", async () => {
   act(() => {
     startBtn.click();
   });
-  const startMenu = await screen.findByText("StartMenu");
+  const startMenu = await screen.findByText("Windows95");
   expect(startMenu).toBeVisible;
 });
