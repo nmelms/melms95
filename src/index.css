@@ -27,6 +27,11 @@ code {
   --desktopBg: #018281;
   --primaryBg: #c0c0c0;
   --secondaryBg: #808080;
+  --hoverBlue: #000190;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 .homeScreen {
   position: relative;
@@ -98,7 +103,7 @@ code {
   align-self: flex-end;
   height: fit-content;
   width: fit-content;
-  padding-right: 0.5rem;
+  padding-right: 0.25rem;
   bottom: 5vh;
   background-color: var(--primaryBg);
   border: 2px outset black;
@@ -134,6 +139,10 @@ code {
   display: flex;
   align-items: center;
 }
+.program:hover {
+  background-color: var(--hoverBlue);
+  color: white;
+}
 .program img {
   min-height: 50px;
   min-width: 50px;
@@ -144,6 +153,10 @@ code {
   font-size: 1.5rem;
   display: flex;
   align-items: center;
+}
+.shutdown:hover {
+  background-color: var(--hoverBlue);
+  color: white;
 }
 .shutdown img {
   padding-right: 1rem;
