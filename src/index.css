@@ -41,6 +41,14 @@ a {
   width: 100vw;
 }
 
+.desktop {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100vw;
+  height: 95vh;
+}
+
 .startBar {
   background-color: var(--primaryBg);
   border-top: 2px solid whitesmoke;
@@ -97,6 +105,7 @@ a {
 
 .startMenu {
   display: flex;
+  z-index: 2;
   align-items: flex-end;
   margin-left: 5px;
   position: relative;
