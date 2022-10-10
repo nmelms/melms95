@@ -1,5 +1,16 @@
+@font-face {
+  font-family: "default";
+  src: url("./fonts/w95fa.woff2");
+}
+* {
+  font-family: "default", Times, serif;
+}
+
 body {
+  max-height: 100vh;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -68,22 +79,26 @@ code {
   height: 80%;
 }
 .clock {
-  padding: 1rem;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  align-items: center;
   border: 2px inset;
   border-bottom-color: whitesmoke;
   border-right-color: whitesmoke;
 }
 
 .startMenu {
+  display: flex;
+  align-items: flex-end;
   margin-left: 5px;
   position: relative;
   align-self: flex-end;
-  height: 500px;
-  width: 300px;
+  height: fit-content;
+  width: fit-content;
+  padding-right: 0.5rem;
   bottom: 5vh;
   background-color: var(--primaryBg);
   border: 2px outset black;
@@ -91,23 +106,47 @@ code {
   border-top-color: whitesmoke;
 }
 .startMenuText {
+  display: flex;
+  justify-content: flex-end;
   position: absolute;
   margin: 0;
   left: 0;
   text-align: left;
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
   height: 100%;
-  width: fit-content;
+  width: 2.5rem;
   background-color: var(--secondaryBg);
 }
 .startMenuText h1 {
   margin: 0;
   margin-top: 2rem;
+  font-stretch: ultra-expanded;
+  font-weight: bolder;
+}
+.programs {
+  width: calc(100% - 2.5rem);
+  margin-left: 2.5rem;
 }
 .program {
+  padding: 0.25rem;
+  padding-right: 4rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.program img {
+  min-height: 50px;
+  min-width: 50px;
+  padding-right: 1rem;
+}
+.shutdown {
+  border-top: 2px whitesmoke outset;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.shutdown img {
+  padding-right: 1rem;
   height: 50px;
-  width: 100%;
-  background-color: black;
-  color: white;
+  width: 50px;
 }
