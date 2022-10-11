@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import userEvent from "@testing-library/user-event";
 import HomeScreen from "./HomeScreen";
 
 test("renders a start menu", async () => {
@@ -23,9 +24,19 @@ test("renders a recycle bin icon", async () => {
 test("opens Start menu when start button is click", async () => {
   render(<HomeScreen />);
   const startBtn = await screen.findByRole("button", { name: "Start" });
-  act(() => {
-    startBtn.click();
-  });
-  const startMenu = screen.getByAltText("winows 95 logo");
-  expect(startMenu).toBeVisible;
+  userEvent.click(startBtn);
+  const startMenu = screen.getByAltText("windows 95 logo");
+  expect(startMenu).toBeVisible();
+});
+
+test("opens and closes bio window on click", async () => {
+  render(<HomeScreen />);
+  const bioText = await screen.findByText("My Bio");
+  const bioIcon = bioText.parentNode;
+  userEvent.click(bioIcon);
+  const bioWindow = screen.getByTestId("Window");
+  expect(bioWindow).toBeVisible();
+  const closeBtn = await screen.findByRole("button", { name: "X" });
+  userEvent.click(closeBtn);
+  expect(bioWindow).not.toBeVisible();
 });

@@ -11,7 +11,7 @@ export default function StartMenu() {
   return (
     <div className="startMenu" data-testid="startMenu">
       <div className="startMenuText">
-        <img alt="winows 95 logo" src={sidebarImg} />
+        <img alt="windows 95 logo" src={sidebarImg} />
       </div>
 
       <div className="programs">

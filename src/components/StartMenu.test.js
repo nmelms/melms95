@@ -4,7 +4,7 @@ import StartMenu from "./StartMenu";
 
 test("renders windows95 text", async () => {
   render(<StartMenu />);
-  const windows = screen.getByAltText("winows 95 logo");
+  const windows = screen.getByAltText("windows 95 logo");
   expect(windows).toBeVisible();
 });
 

@@ -27,7 +27,7 @@ code {
   --desktopBg: #018281;
   --primaryBg: #c0c0c0;
   --secondaryBg: #808080;
-  --hoverBlue: #000190;
+  --hoverBlue: #00007c;
 }
 a {
   text-decoration: none;
@@ -187,4 +187,53 @@ a {
 .icon img {
   height: 70%;
   width: 70%;
+}
+.window {
+  cursor: move;
+  background-color: var(--primaryBg);
+  height: 50vh;
+  width: 50vw;
+  position: absolute;
+  border: 2px outset black;
+  border-top-color: whitesmoke;
+  border-left-color: whitesmoke;
+  top: 25%;
+  left: 25%;
+}
+.windowNav {
+  margin: 2px;
+  display: flex;
+  justify-content: space-between;
+  height: 1.25rem;
+  max-width: 100%;
+  background-color: var(--hoverBlue);
+  color: white;
+}
+.windowNav p {
+  margin: 0;
+  font-weight: bold;
+}
+.nameAndIcon {
+  margin-left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.windowNavBtns {
+  display: flex;
+  margin-right: 2px;
+}
+.navBtn {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  height: 16px;
+  width: 16px;
+  background-color: var(--primaryBg);
+  border-radius: 0;
 }
