@@ -172,3 +172,19 @@ a {
   height: 50px;
   width: 50px;
 }
+.icon {
+  color: white;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80px;
+}
+.icon p {
+  margin: 0;
+}
+.icon img {
+  height: 70%;
+  width: 70%;
+}
