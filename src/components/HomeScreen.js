@@ -16,8 +16,13 @@ export default function HomeScreen() {
   const windowRef = useRef();
 
   const handleClick = (name) => {
-    setPages([...pages, name]);
-    setSelected(name);
+    if (!pages.includes(name)) {
+      setPages([...pages, name]);
+      setSelected(name);
+    } else {
+      setSelected(name);
+    }
+
     console.log(selected);
     console.log(pages);
   };

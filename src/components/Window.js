@@ -10,7 +10,7 @@ import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 
 export default function Window({ pages, setPages, handleClick }) {
-  const handleCloseClick = () => {
+  const handleCloseClick = (event) => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Bio");
     setPages(filtered);
@@ -31,13 +31,22 @@ export default function Window({ pages, setPages, handleClick }) {
             <p>My Bio</p>
           </div>
           <div className="windowNavBtns">
-            <button onClick={handleCloseClick} className="navBtn">
+            <button
+              onClick={(event) => handleCloseClick(event)}
+              className="navBtn"
+            >
               _
             </button>
-            <button onClick={handleCloseClick} className="navBtn">
+            <button
+              onClick={(event) => handleCloseClick(event)}
+              className="navBtn"
+            >
               O
             </button>
-            <button onClick={handleCloseClick} className="navBtn">
+            <button
+              onClick={(event) => handleCloseClick(event)}
+              className="navBtn"
+            >
               X
             </button>
           </div>
