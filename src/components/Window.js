@@ -9,7 +9,7 @@ import cssSVG from "../assets/css.svg";
 import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 
-export default function Window({ pages, setPages }) {
+export default function Window({ pages, setPages, handleClick }) {
   const handleCloseClick = () => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Bio");
@@ -19,7 +19,12 @@ export default function Window({ pages, setPages }) {
 
   return (
     <Draggable nodeRef={nodeRef}>
-      <div ref={nodeRef} data-testid="Window" className="window ">
+      <div
+        onClick={() => handleClick("Bio")}
+        ref={nodeRef}
+        data-testid="Window"
+        className="window "
+      >
         <nav className="windowNav">
           <div className="nameAndIcon">
             <img style={{ height: "18px" }} src={myComputer} />
