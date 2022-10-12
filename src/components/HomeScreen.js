@@ -9,6 +9,7 @@ import Window from "./Window";
 export default function HomeScreen() {
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
+
   const windowRef = useRef();
 
   const handleBioClick = () => {
