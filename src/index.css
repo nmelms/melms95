@@ -189,7 +189,6 @@ a {
   width: 70%;
 }
 .window {
-  z-index: 10;
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
@@ -213,7 +212,7 @@ a {
   justify-content: space-between;
   height: 1.75rem;
   max-width: 100%;
-  background-color: var(--hoverBlue);
+  background-color: var(--secondaryBg);
   color: white;
 }
 .windowNav p {
@@ -272,17 +271,26 @@ a {
   margin: 1rem 0 0.5rem 0;
 }
 .projects {
-  top: 50%;
-  left: 50%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--primaryBg);
+  height: fit-content;
+  min-height: 200px;
+  width: 50vw;
   position: absolute;
-  height: 100px;
-  width: 100px;
-  background-color: black;
+  border: 2px outset black;
+  border-top-color: whitesmoke;
+  border-left-color: whitesmoke;
+  top: 25%;
+  left: 25%;
 }
 .top {
   position: absolute;
   z-index: 100;
 }
-.window:focus {
-  z-index: 200;
+.top nav {
+  background-color: var(--hoverBlue);
 }

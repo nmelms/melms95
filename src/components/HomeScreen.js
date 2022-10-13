@@ -22,9 +22,6 @@ export default function HomeScreen() {
     } else {
       setSelected(name);
     }
-
-    console.log(selected);
-    console.log(pages);
   };
 
   return (
@@ -48,6 +45,7 @@ export default function HomeScreen() {
       </div>
       {pages.includes("Bio") && (
         <Window
+          selected={selected}
           handleClick={() => handleClick("Bio")}
           selected={selected}
           pages={pages}

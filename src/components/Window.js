@@ -9,7 +9,7 @@ import cssSVG from "../assets/css.svg";
 import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 
-export default function Window({ pages, setPages, handleClick }) {
+export default function Window({ pages, setPages, handleClick, selected }) {
   const handleCloseClick = (event) => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Bio");
@@ -23,7 +23,7 @@ export default function Window({ pages, setPages, handleClick }) {
         onClick={() => handleClick("Bio")}
         ref={nodeRef}
         data-testid="Window"
-        className="window "
+        className={selected === "Bio" ? "window top" : "window"}
       >
         <nav className="windowNav">
           <div className="nameAndIcon">
