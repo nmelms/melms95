@@ -4,11 +4,31 @@ import file from "../assets/file.png";
 import Icon from "./Icon";
 import Draggable from "react-draggable";
 
-export default function Projects({ selected, handleClick }) {
+export default function Projects({
+  setSelected,
+  handleClick,
+  pages,
+  setPages,
+  selected,
+}) {
+  const handleIconClick = (name) => {
+    if (!pages.includes(name)) {
+      setPages([...pages, name]);
+      setSelected(name);
+    } else {
+      setSelected(name);
+    }
+  };
+  const handleCloseClick = (event) => {
+    const newArr = pages;
+    const filtered = newArr.filter((item) => item !== "Projects");
+    setPages(filtered);
+  };
   const nodeRef = useRef();
   return (
     <Draggable nodeRef={nodeRef}>
       <div
+        data-testid="projectsWindow"
         ref={nodeRef}
         onClick={() => handleClick("Projects")}
         className={selected === "Projects" ? "projects top" : "projects"}
@@ -31,16 +51,14 @@ export default function Projects({ selected, handleClick }) {
             >
               O
             </button>
-            <button
-              // onClick={(event) => handleCloseClick(event)}
-              className="navBtn"
-            >
+            <button onClick={() => handleCloseClick()} className="navBtn">
               X
             </button>
           </div>
         </nav>
         <div className="projectsBody">
           <Icon
+            handleClick={() => handleIconClick("national parks")}
             name="National Parks"
             imgSrc={file}
             alt="national parks project"

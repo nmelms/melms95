@@ -306,3 +306,24 @@ a {
   margin: 1rem;
   border: 2px inset black;
 }
+.npsProject {
+  border: 2px outset black;
+  border-top-color: whitesmoke;
+  border-left-color: whitesmoke;
+  position: absolute;
+  top: 25%;
+  left: 60%;
+  background-color: var(--primaryBg);
+  height: fit-content;
+  width: 30vw;
+}
+.screenShot {
+  width: 70%;
+}
+.icons {
+  padding-bottom: 2rem;
+  margin: 0 auto;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}

@@ -40,3 +40,15 @@ test("opens and closes bio window on click", async () => {
   userEvent.click(closeBtn);
   expect(bioWindow).not.toBeVisible();
 });
+
+test("opens and closes projects window on click", async () => {
+  render(<HomeScreen />);
+  const projectText = await screen.findByText("Projects");
+  const projectIcon = projectText.parentNode;
+  userEvent.click(projectIcon);
+  const projectsWindow = screen.getByTestId("projectsWindow");
+  expect(projectsWindow).toBeVisible();
+  const closeBtn = await screen.findByRole("button", { name: "X" });
+  userEvent.click(closeBtn);
+  expect(projectsWindow).not.toBeVisible();
+});

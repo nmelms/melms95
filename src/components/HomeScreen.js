@@ -7,11 +7,13 @@ import mycomputer from "../assets/mycomputer.png";
 import folder from "../assets/folder2.png";
 import Window from "./Window";
 import Projects from "./Projects";
+import NpsProject from "./NpsProject";
 
 export default function HomeScreen() {
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState("");
+  console.log(pages);
 
   const windowRef = useRef();
 
@@ -47,18 +49,21 @@ export default function HomeScreen() {
         <Window
           selected={selected}
           handleClick={() => handleClick("Bio")}
-          selected={selected}
           pages={pages}
           setPages={setPages}
         />
       )}
       {pages.includes("Projects") && (
         <Projects
-          handleClick={() => handleClick("Projects")}
           selected={selected}
+          handleClick={() => handleClick("Projects")}
+          setSelected={setSelected}
           pages={pages}
           setPages={setPages}
         />
+      )}
+      {pages.includes("national parks") && (
+        <NpsProject setSelected={setSelected} selected={selected} />
       )}
     </div>
   );
