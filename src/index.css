@@ -42,6 +42,7 @@ a {
 }
 
 .desktop {
+  color: white;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -173,7 +174,8 @@ a {
   width: 50px;
 }
 .icon {
-  color: white;
+  color: inherit;
+  height: fit-content;
   margin: 1rem;
   display: flex;
   justify-content: center;
@@ -185,7 +187,6 @@ a {
   margin: 0;
 }
 .icon img {
-  height: 70%;
   width: 70%;
 }
 .window {
@@ -278,8 +279,8 @@ a {
   flex-direction: column;
   background-color: var(--primaryBg);
   height: fit-content;
-  min-height: 200px;
-  width: 50vw;
+  height: 400px;
+  width: 40vw;
   position: absolute;
   border: 2px outset black;
   border-top-color: whitesmoke;
@@ -293,4 +294,15 @@ a {
 }
 .top nav {
   background-color: var(--hoverBlue);
+}
+.projectsBody {
+  display: flex;
+  flex-wrap: wrap;
+  color: black;
+  position: relative;
+  height: 80%;
+  width: 95%;
+  background-color: white;
+  margin: 1rem;
+  border: 2px inset black;
 }

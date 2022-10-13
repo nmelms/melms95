@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import folder from "../assets/folder2.png";
+import file from "../assets/file.png";
+import Icon from "./Icon";
 import Draggable from "react-draggable";
 
 export default function Projects({ selected, handleClick }) {
@@ -37,6 +39,15 @@ export default function Projects({ selected, handleClick }) {
             </button>
           </div>
         </nav>
+        <div className="projectsBody">
+          <Icon
+            name="National Parks"
+            imgSrc={file}
+            alt="national parks project"
+          />
+          <Icon name="Invoice App" imgSrc={file} alt="invoice project" />
+          <Icon name="Planet Facts" imgSrc={file} alt="planet facts project" />
+        </div>
       </div>
     </Draggable>
   );
