@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Icon({ name, imgSrc, alt, handleClick }) {
+export default function Icon({ name, imgSrc, alt, handleClick, key }) {
   return (
-    <div onClick={() => handleClick()} className="icon">
+    <div id={key} onClick={handleClick} className="icon">
       <img alt={alt} src={imgSrc} />
       <p>{name}</p>
     </div>

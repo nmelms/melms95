@@ -11,10 +11,13 @@ export default function Projects({
   setPages,
   selected,
 }) {
-  const handleIconClick = (name) => {
+  const handleIconClick = (e, name) => {
+    e.stopPropagation();
+    console.log(name);
     if (!pages.includes(name)) {
       setPages([...pages, name]);
       setSelected(name);
+      console.log(selected);
     } else {
       setSelected(name);
     }
@@ -58,18 +61,24 @@ export default function Projects({
         </nav>
         <div className="projectsBody">
           <Icon
-            handleClick={() => handleIconClick("national parks")}
+            handleClick={(e) => handleIconClick(e, "national parks")}
             name="National Parks"
             imgSrc={file}
             alt="national parks project"
           />
           <Icon
-            handleClick={() => handleIconClick("invoice app")}
+            handleClick={(e) => handleIconClick(e, "invoice app")}
             name="Invoice App"
             imgSrc={file}
             alt="invoice project"
           />
-          <Icon name="Planet Facts" imgSrc={file} alt="planet facts project" />
+          <Icon
+            key={"planet facts"}
+            handleClick={(e) => handleIconClick(e, "planet facts")}
+            name="Planet Facts"
+            imgSrc={file}
+            alt="planet facts project"
+          />
         </div>
       </div>
     </Draggable>

@@ -9,14 +9,15 @@ import Window from "./Window";
 import Projects from "./Projects";
 import NpsProject from "./NpsProject";
 import InvoiceProject from "./InvoiceProject";
+import PlanetProject from "./PlanetProject";
 
 export default function HomeScreen() {
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState("");
-  console.log(pages);
 
   const windowRef = useRef();
+  console.log(selected);
 
   const handleClick = (name) => {
     if (!pages.includes(name)) {
@@ -26,8 +27,6 @@ export default function HomeScreen() {
       setSelected(name);
     }
   };
-
-  console.log(selected);
 
   return (
     <div className="homeScreen">
@@ -75,6 +74,14 @@ export default function HomeScreen() {
       )}
       {pages.includes("invoice app") && (
         <InvoiceProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("planet facts") && (
+        <PlanetProject
           pages={pages}
           setPages={setPages}
           setSelected={setSelected}
