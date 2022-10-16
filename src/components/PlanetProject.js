@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import Draggable from "react-draggable";
 import file from "../assets/file.png";
 import screenShot from "../assets/planetScreenshot.png";
@@ -13,11 +13,7 @@ export default function InvoiceProject({
   setPages,
 }) {
   const nodeRef = useRef();
-
-  useEffect(() => {
-    nodeRef.current.classList.add("top");
-  }, []);
-
+  const [fullScreen, setFullScreen] = useState("");
   const handleClick = () => {
     setSelected("planet facts");
   };
@@ -26,6 +22,11 @@ export default function InvoiceProject({
     const filtered = newArr.filter((item) => item !== "planet facts");
     setPages(filtered);
   };
+  const handleFullScreenClick = () => {
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
+  };
 
   return (
     <Draggable nodeRef={nodeRef}>
@@ -33,7 +34,9 @@ export default function InvoiceProject({
         ref={nodeRef}
         onClick={handleClick}
         className={
-          selected === "planet facts" ? "npsProject top" : "npsProject"
+          selected === "planet facts"
+            ? `npsProject top ${fullScreen}`
+            : "npsProject"
         }
       >
         <nav className="windowNav">
@@ -49,7 +52,7 @@ export default function InvoiceProject({
               _
             </button>
             <button
-              // onClick={(event) => handleCloseClick(event)}
+              onClick={(event) => handleFullScreenClick(event)}
               className="navBtn"
             >
               O

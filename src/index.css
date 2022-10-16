@@ -327,3 +327,10 @@ a {
   width: 40%;
   justify-content: space-between;
 }
+.fullScreen {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

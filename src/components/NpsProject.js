@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import nps from "../assets/npsScreenShot.png";
 import file from "../assets/file.png";
 import Draggable from "react-draggable";
@@ -7,6 +7,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function NpsProject({ selected, setSelected, pages, setPages }) {
+  const [fullScreen, setFullScreen] = useState("");
   const nodeRef = useRef();
   const handleClick = () => {
     setSelected("national parks");
@@ -16,13 +17,20 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
     const filtered = newArr.filter((item) => item !== "national parks");
     setPages(filtered);
   };
+  const handleFullScreenClick = () => {
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
+  };
   return (
     <Draggable nodeRef={nodeRef}>
       <div
         ref={nodeRef}
         onClick={handleClick}
         className={
-          selected === "national parks" ? "npsProject top" : "npsProject"
+          selected === "national parks"
+            ? `npsProject top ${fullScreen}`
+            : "npsProject"
         }
       >
         <nav className="windowNav">
@@ -38,7 +46,7 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
               _
             </button>
             <button
-              // onClick={(event) => handleCloseClick(event)}
+              onClick={(event) => handleFullScreenClick(event)}
               className="navBtn"
             >
               O

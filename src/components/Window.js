@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import myComputer from "../assets/mycomputer.png";
 import pic from "../assets/me.jpg";
 import Draggable from "react-draggable";
@@ -10,10 +10,16 @@ import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 
 export default function Window({ pages, setPages, handleClick, selected }) {
+  const [fullScreen, setFullScreen] = useState("");
   const handleCloseClick = (event) => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Bio");
     setPages(filtered);
+  };
+  const handleFullScreenClick = () => {
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
   };
   const nodeRef = useRef();
 
@@ -23,7 +29,7 @@ export default function Window({ pages, setPages, handleClick, selected }) {
         onClick={() => handleClick("Bio")}
         ref={nodeRef}
         data-testid="Window"
-        className={selected === "Bio" ? "window top" : "window"}
+        className={selected === "Bio" ? `window top  ${fullScreen}` : "window"}
       >
         <nav className="windowNav">
           <div className="nameAndIcon">
@@ -38,7 +44,7 @@ export default function Window({ pages, setPages, handleClick, selected }) {
               _
             </button>
             <button
-              onClick={(event) => handleCloseClick(event)}
+              onClick={(event) => handleFullScreenClick(event)}
               className="navBtn"
             >
               O

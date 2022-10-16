@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Draggable from "react-draggable";
 import file from "../assets/file.png";
 import screenShot from "../assets/invoiceScreenshot.png";
@@ -12,6 +12,7 @@ export default function InvoiceProject({
   pages,
   setPages,
 }) {
+  const [fullScreen, setFullScreen] = useState("");
   const nodeRef = useRef();
   const handleClick = () => {
     setSelected("invoice app");
@@ -21,13 +22,22 @@ export default function InvoiceProject({
     const filtered = newArr.filter((item) => item !== "invoice app");
     setPages(filtered);
   };
+  const handleFullScreenClick = () => {
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
+  };
 
   return (
     <Draggable nodeRef={nodeRef}>
       <div
         ref={nodeRef}
         onClick={handleClick}
-        className={selected === "invoice app" ? "npsProject top" : "npsProject"}
+        className={
+          selected === "invoice app"
+            ? `npsProject top ${fullScreen}`
+            : "npsProject"
+        }
       >
         <nav className="windowNav">
           <div className="nameAndIcon">
@@ -42,7 +52,7 @@ export default function InvoiceProject({
               _
             </button>
             <button
-              // onClick={(event) => handleCloseClick(event)}
+              onClick={(event) => handleFullScreenClick(event)}
               className="navBtn"
             >
               O

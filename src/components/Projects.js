@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import folder from "../assets/folder2.png";
 import file from "../assets/file.png";
 import Icon from "./Icon";
@@ -11,6 +11,7 @@ export default function Projects({
   setPages,
   selected,
 }) {
+  const [fullScreen, setFullScreen] = useState("");
   const handleIconClick = (e, name) => {
     e.stopPropagation();
     console.log(name);
@@ -27,6 +28,12 @@ export default function Projects({
     const filtered = newArr.filter((item) => item !== "Projects");
     setPages(filtered);
   };
+
+  const handleFullScreenClick = () => {
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
+  };
   const nodeRef = useRef();
   return (
     <Draggable nodeRef={nodeRef}>
@@ -34,7 +41,9 @@ export default function Projects({
         data-testid="projectsWindow"
         ref={nodeRef}
         onClick={() => handleClick("Projects")}
-        className={selected === "Projects" ? "projects top" : "projects"}
+        className={
+          selected === "Projects" ? `projects top  ${fullScreen}` : "projects"
+        }
       >
         <nav data-testid="nav" className="windowNav">
           <div className="nameAndIcon">
@@ -49,7 +58,7 @@ export default function Projects({
               _
             </button>
             <button
-              // onClick={(event) => handleCloseClick(event)}
+              onClick={(event) => handleFullScreenClick(event)}
               className="navBtn"
             >
               O
