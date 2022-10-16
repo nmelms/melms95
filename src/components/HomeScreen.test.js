@@ -52,3 +52,18 @@ test("opens and closes projects window on click", async () => {
   userEvent.click(closeBtn);
   expect(projectsWindow).not.toBeVisible();
 });
+
+test("opens and closes nps project window on click", async () => {
+  render(<HomeScreen />);
+  const projectText = await screen.findByText("Projects");
+  const projectIcon = projectText.parentNode;
+  userEvent.click(projectIcon);
+  const npsText = await screen.findByText("National Parks");
+  const npsProject = projectText.parentNode;
+  userEvent.click(npsText);
+  const h1 = await screen.findByText("Explore National Parks");
+  expect(h1).toBeVisible();
+  const button = screen.getByTestId("npsClose");
+  userEvent.click(button);
+  expect(h1).not.toBeVisible();
+});

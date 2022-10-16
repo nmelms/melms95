@@ -13,7 +13,6 @@ export default function HomeScreen() {
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState("");
-  console.log(pages);
 
   const windowRef = useRef();
 
@@ -63,7 +62,12 @@ export default function HomeScreen() {
         />
       )}
       {pages.includes("national parks") && (
-        <NpsProject setSelected={setSelected} selected={selected} />
+        <NpsProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
       )}
     </div>
   );

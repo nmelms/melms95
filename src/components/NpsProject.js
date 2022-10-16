@@ -6,10 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function NpsProject({ selected, setSelected }) {
+export default function NpsProject({ selected, setSelected, pages, setPages }) {
   const nodeRef = useRef();
   const handleClick = () => {
     setSelected("national parks");
+  };
+  const handleCloseClick = (event) => {
+    const newArr = pages;
+    const filtered = newArr.filter((item) => item !== "national parks");
+    setPages(filtered);
   };
   return (
     <Draggable nodeRef={nodeRef}>
@@ -39,7 +44,8 @@ export default function NpsProject({ selected, setSelected }) {
               O
             </button>
             <button
-              // onClick={(event) => handleCloseClick(event)}
+              data-testid="npsClose"
+              onClick={(event) => handleCloseClick(event)}
               className="navBtn"
             >
               X
@@ -47,7 +53,11 @@ export default function NpsProject({ selected, setSelected }) {
           </div>
         </nav>
         <h1>Explore National Parks</h1>
-        <img className="screenShot" src={nps} />
+        <img
+          alt="screen shot of National Parks project"
+          className="screenShot"
+          src={nps}
+        />
         <h2>About This Project</h2>
         <p>
           This is a project I designed and created using the National Park
@@ -58,10 +68,14 @@ export default function NpsProject({ selected, setSelected }) {
         </p>
         <div className="icons">
           <a href="https://github.com/Nmelms/national-parks">
-            <FontAwesomeIcon size="2x" icon={faGithub} />
+            <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmelmsnps.netlify.app/">
-            <FontAwesomeIcon size="2x" icon={faArrowUpRightFromSquare} />
+          <a href="https://nmelmsnps.netlify.app">
+            <FontAwesomeIcon
+              title="live project link"
+              size="2x"
+              icon={faArrowUpRightFromSquare}
+            />
           </a>
         </div>
       </div>
