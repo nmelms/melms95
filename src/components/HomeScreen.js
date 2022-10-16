@@ -8,11 +8,13 @@ import folder from "../assets/folder2.png";
 import Window from "./Window";
 import Projects from "./Projects";
 import NpsProject from "./NpsProject";
+import InvoiceProject from "./InvoiceProject";
 
 export default function HomeScreen() {
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState("");
+  console.log(pages);
 
   const windowRef = useRef();
 
@@ -24,6 +26,8 @@ export default function HomeScreen() {
       setSelected(name);
     }
   };
+
+  console.log(selected);
 
   return (
     <div className="homeScreen">
@@ -63,6 +67,14 @@ export default function HomeScreen() {
       )}
       {pages.includes("national parks") && (
         <NpsProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("invoice app") && (
+        <InvoiceProject
           pages={pages}
           setPages={setPages}
           setSelected={setSelected}

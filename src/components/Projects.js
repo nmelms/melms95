@@ -63,7 +63,12 @@ export default function Projects({
             imgSrc={file}
             alt="national parks project"
           />
-          <Icon name="Invoice App" imgSrc={file} alt="invoice project" />
+          <Icon
+            handleClick={() => handleIconClick("invoice app")}
+            name="Invoice App"
+            imgSrc={file}
+            alt="invoice project"
+          />
           <Icon name="Planet Facts" imgSrc={file} alt="planet facts project" />
         </div>
       </div>

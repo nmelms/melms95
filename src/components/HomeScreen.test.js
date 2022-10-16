@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
+
 import HomeScreen from "./HomeScreen";
 
 test("renders a start menu", async () => {
