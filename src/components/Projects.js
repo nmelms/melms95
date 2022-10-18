@@ -12,9 +12,13 @@ export default function Projects({
   selected,
 }) {
   const [fullScreen, setFullScreen] = useState("");
+  const [diffX, setDiffX] = useState();
+  const [diffY, setDiffY] = useState();
+  const [isDragging, setIsDragging] = useState(false);
+  const [styles, setStyles] = useState();
+  const nodeRef = useRef();
   const handleIconClick = (e, name) => {
     e.stopPropagation();
-    console.log(name);
     if (!pages.includes(name)) {
       setPages([...pages, name]);
       setSelected(name);
@@ -34,62 +38,82 @@ export default function Projects({
       ? setFullScreen("")
       : setFullScreen("fullScreen");
   };
-  const nodeRef = useRef();
+
+  const dragStart = (e) => {
+    console.log(e.currentTarget.getBoundingClientRect().left);
+    setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
+    setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
+    setIsDragging(true);
+  };
+
+  const dragging = (e) => {
+    const left = e.screenX - diffX;
+    const top = e.screenY - diffY;
+
+    if (isDragging && fullScreen !== "fullScreen") {
+      setStyles({ left: left, top: top });
+    }
+  };
+  const dragEnd = (e) => {
+    setIsDragging(false);
+    console.log("up");
+  };
   return (
-    <Draggable nodeRef={nodeRef}>
-      <div
-        data-testid="projectsWindow"
-        ref={nodeRef}
-        onClick={() => handleClick("Projects")}
-        className={
-          selected === "Projects" ? `projects top  ${fullScreen}` : "projects"
-        }
-      >
-        <nav data-testid="nav" className="windowNav">
-          <div className="nameAndIcon">
-            <img style={{ height: "18px" }} src={folder} />
-            <p>Projects</p>
-          </div>
-          <div className="windowNavBtns">
-            <button
-              // onClick={(event) => handleCloseClick(event)}
-              className="navBtn"
-            >
-              _
-            </button>
-            <button
-              onClick={(event) => handleFullScreenClick(event)}
-              className="navBtn"
-            >
-              O
-            </button>
-            <button onClick={() => handleCloseClick()} className="navBtn">
-              X
-            </button>
-          </div>
-        </nav>
-        <div className="projectsBody">
-          <Icon
-            handleClick={(e) => handleIconClick(e, "national parks")}
-            name="National Parks"
-            imgSrc={file}
-            alt="national parks project"
-          />
-          <Icon
-            handleClick={(e) => handleIconClick(e, "invoice app")}
-            name="Invoice App"
-            imgSrc={file}
-            alt="invoice project"
-          />
-          <Icon
-            key={"planet facts"}
-            handleClick={(e) => handleIconClick(e, "planet facts")}
-            name="Planet Facts"
-            imgSrc={file}
-            alt="planet facts project"
-          />
+    <div
+      style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
+      onMouseDown={(e) => dragStart(e)}
+      onMouseMove={(e) => dragging(e)}
+      onMouseUp={(e) => dragEnd(e)}
+      data-testid="projectsWindow"
+      ref={nodeRef}
+      onClick={() => handleClick("Projects")}
+      className={
+        selected === "Projects" ? `projects top  ${fullScreen}` : "projects"
+      }
+    >
+      <nav data-testid="nav" className="windowNav">
+        <div className="nameAndIcon">
+          <img style={{ height: "18px" }} src={folder} />
+          <p>Projects</p>
         </div>
+        <div className="windowNavBtns">
+          <button
+            // onClick={(event) => handleCloseClick(event)}
+            className="navBtn"
+          >
+            _
+          </button>
+          <button
+            onClick={(event) => handleFullScreenClick(event)}
+            className="navBtn"
+          >
+            O
+          </button>
+          <button onClick={() => handleCloseClick()} className="navBtn">
+            X
+          </button>
+        </div>
+      </nav>
+      <div className="projectsBody">
+        <Icon
+          handleClick={(e) => handleIconClick(e, "national parks")}
+          name="National Parks"
+          imgSrc={file}
+          alt="national parks project"
+        />
+        <Icon
+          handleClick={(e) => handleIconClick(e, "invoice app")}
+          name="Invoice App"
+          imgSrc={file}
+          alt="invoice project"
+        />
+        <Icon
+          handleClick={(e) => handleIconClick(e, "planet facts")}
+          name="Planet Facts"
+          imgSrc={file}
+          alt="planet facts project"
+        />
       </div>
-    </Draggable>
+    </div>
   );
 }
