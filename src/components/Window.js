@@ -41,6 +41,7 @@ export default function Window({ pages, setPages, handleClick, selected }) {
   const dragging = (e) => {
     const left = e.screenX - diffX;
     const top = e.screenY - diffY;
+    console.log(e.screenX);
 
     if (isDragging && fullScreen !== "fullScreen") {
       setStyles({ left: left, top: top });
@@ -53,9 +54,9 @@ export default function Window({ pages, setPages, handleClick, selected }) {
   return (
     <div
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      onMouseDown={(e) => dragStart(e)}
-      onMouseMove={(e) => dragging(e)}
-      onMouseUp={(e) => dragEnd(e)}
+      onPointerDown={(e) => dragStart(e)}
+      onPointerMove={(e) => dragging(e)}
+      onPointerUp={(e) => dragEnd(e)}
       ref={nodeRef}
       data-testid="Window"
       className={selected === "Bio" ? `window top  ${fullScreen}` : "window"}
