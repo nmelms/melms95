@@ -15,6 +15,13 @@ export default function HomeScreen() {
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState("");
+  const appHeight = () =>
+    document.documentElement.style.setProperty(
+      "--app-height",
+      `${window.innerHeight}px`
+    );
+  window.addEventListener("resize", appHeight);
+  appHeight();
 
   const windowRef = useRef();
   console.log(selected);

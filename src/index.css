@@ -7,7 +7,7 @@
 }
 
 body {
-  max-height: 100vh;
+  height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -28,6 +28,7 @@ code {
   --primaryBg: #c0c0c0;
   --secondaryBg: #808080;
   --hoverBlue: #00007c;
+  --app-height: 100vh;
 }
 a {
   text-decoration: none;
@@ -37,7 +38,7 @@ a {
   position: relative;
   display: flex;
   background-color: var(--desktopBg);
-  height: 100vh;
+  height: var(--app-height);
   width: 100vw;
 }
 
@@ -249,6 +250,8 @@ a {
 .bioMain {
   padding: 1rem;
   width: 70%;
+  height: 400px;
+  overflow: scroll;
 }
 .bioMain * {
   margin: 0;
