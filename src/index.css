@@ -28,7 +28,7 @@ code {
   --primaryBg: #c0c0c0;
   --secondaryBg: #808080;
   --hoverBlue: #00007c;
-  --app-height: 100vh;
+  --app-height: 100%;
 }
 a {
   text-decoration: none;
