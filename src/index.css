@@ -37,7 +37,7 @@ a {
 .homeScreen {
   position: relative;
   display: flex;
-  background-color: var(--desktopBg);
+  background-color: red;
   height: var(--app-height);
   width: 100vw;
 }
