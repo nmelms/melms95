@@ -111,7 +111,7 @@ a {
 
 .startMenu {
   display: flex;
-  z-index: 2;
+  z-index: 60;
   align-items: flex-end;
   margin-left: 5px;
   position: relative;
