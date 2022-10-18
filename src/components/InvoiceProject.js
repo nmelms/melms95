@@ -33,6 +33,7 @@ export default function InvoiceProject({
   };
   //All the logic to make the window draggable
   const dragStart = (e) => {
+    handleClick();
     console.log(e.currentTarget.getBoundingClientRect().left);
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
     setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
@@ -59,7 +60,6 @@ export default function InvoiceProject({
       onMouseMove={(e) => dragging(e)}
       onMouseUp={(e) => dragEnd(e)}
       ref={nodeRef}
-      onClick={handleClick}
       className={
         selected === "invoice app"
           ? `npsProject top ${fullScreen}`

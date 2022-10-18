@@ -31,6 +31,7 @@ export default function Window({ pages, setPages, handleClick, selected }) {
 
   //All the logic to make the window draggable
   const dragStart = (e) => {
+    handleClick("Bio");
     console.log(e.currentTarget.getBoundingClientRect().left);
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
     setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
@@ -55,7 +56,6 @@ export default function Window({ pages, setPages, handleClick, selected }) {
       onMouseDown={(e) => dragStart(e)}
       onMouseMove={(e) => dragging(e)}
       onMouseUp={(e) => dragEnd(e)}
-      onClick={() => handleClick("Bio")}
       ref={nodeRef}
       data-testid="Window"
       className={selected === "Bio" ? `window top  ${fullScreen}` : "window"}

@@ -28,6 +28,7 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
   };
   //All the logic to make the window draggable
   const dragStart = (e) => {
+    handleClick();
     console.log(e.currentTarget.getBoundingClientRect().left);
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
     setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
@@ -53,7 +54,6 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
       onMouseMove={(e) => dragging(e)}
       onMouseUp={(e) => dragEnd(e)}
       ref={nodeRef}
-      onClick={handleClick}
       className={
         selected === "national parks"
           ? `npsProject top ${fullScreen}`

@@ -40,6 +40,7 @@ export default function Projects({
   };
 
   const dragStart = (e) => {
+    handleClick("Projects");
     console.log(e.currentTarget.getBoundingClientRect().left);
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
     setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
@@ -66,7 +67,6 @@ export default function Projects({
       onMouseUp={(e) => dragEnd(e)}
       data-testid="projectsWindow"
       ref={nodeRef}
-      onClick={() => handleClick("Projects")}
       className={
         selected === "Projects" ? `projects top  ${fullScreen}` : "projects"
       }
