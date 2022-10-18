@@ -61,7 +61,8 @@ a {
   justify-content: space-between;
   min-width: 100vw;
   height: 5vh;
-  align-self: flex-end;
+  position: absolute;
+  bottom: 0;
   z-index: 50;
 }
 .startBtn {
