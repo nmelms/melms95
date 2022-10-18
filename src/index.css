@@ -5,9 +5,11 @@
 * {
   font-family: "default", Times, serif;
 }
+html {
+  height: 100%;
+}
 
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -37,7 +39,7 @@ a {
 .homeScreen {
   position: relative;
   display: flex;
-  background-color: red;
+  background-color: var(--desktopBg);
   height: var(--app-height);
   width: 100vw;
 }
