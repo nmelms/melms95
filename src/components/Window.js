@@ -111,8 +111,8 @@ export default function Window({ pages, setPages, handleClick, selected }) {
           <img alt="firebase " className="techLogo" src={firebaseSVG} />
           <img alt="html " className="techLogo" src={htmlSVG} />
           <img alt="css " className="techLogo" src={cssSVG} />
+          <p>React/Javascript/Jest/fireBase/HTML/CSS</p>
         </div>
-        <p>React/Javascript/Jest/fireBase/HTML/CSS</p>
       </section>
     </div>
   );

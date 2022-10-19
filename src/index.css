@@ -1,6 +1,30 @@
+:root {
+  --desktopBg: #018281;
+  --primaryBg: #c0c0c0;
+  --secondaryBg: #808080;
+  --hoverBlue: #00007c;
+  --app-height: 100%;
+}
+* {
+  scrollbar-color: var(--primaryBg) lightgray;
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  width: 20px;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primaryBg);
+  border: 2px outset lightgray;
+}
+::-webkit-scrollbar-track {
+  background: lightgray;
+}
+
 html {
   height: 100%;
   overflow-y: hidden;
+  overflow-x: hidden;
   touch-action: none;
 }
 
@@ -19,13 +43,6 @@ code {
     monospace;
 }
 
-:root {
-  --desktopBg: #018281;
-  --primaryBg: #c0c0c0;
-  --secondaryBg: #808080;
-  --hoverBlue: #00007c;
-  --app-height: 100%;
-}
 a {
   text-decoration: none;
   color: inherit;
@@ -189,7 +206,7 @@ a {
 }
 .window {
   touch-action: none;
-  overflow-y: scroll;
+  overflow-y: none;
   overflow-x: hidden;
   display: flex;
   align-items: center;
@@ -197,12 +214,13 @@ a {
   background-color: var(--primaryBg);
   height: fit-content;
   width: 50vw;
+  min-width: 300px;
   position: absolute;
   border: 2px outset black;
   border-top-color: whitesmoke;
   border-left-color: whitesmoke;
-  top: 5%;
-  left: 9%;
+  top: 25%;
+  left: 25%;
 }
 .windowNav {
   width: 100%;
@@ -247,7 +265,8 @@ a {
 }
 .bioMain {
   padding: 1rem;
-  width: 70%;
+  max-width: 100%;
+  padding: 0 15% 0 15%;
   height: 400px;
   overflow: scroll;
 }
@@ -274,7 +293,7 @@ a {
 }
 .projects {
   touch-action: none;
-  overflow-y: scroll;
+  overflow-y: none;
   overflow-x: hidden;
   display: flex;
   align-items: center;
@@ -333,4 +352,9 @@ a {
 .fullScreen {
   width: 100%;
   height: 100%;
+}
+@media screen and (max-width: 400px) {
+  .window {
+    left: 10%;
+  }
 }
