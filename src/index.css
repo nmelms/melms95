@@ -68,7 +68,7 @@ a {
   border-top: 2px solid whitesmoke;
   display: flex;
   justify-content: space-between;
-  min-width: 100vw;
+  width: 100vw;
   height: 5vh;
   position: absolute;
   bottom: 0;
@@ -106,8 +106,11 @@ a {
 .startBtnIcon {
   height: 80%;
 }
+.touch {
+}
 .clock {
   display: flex;
+  min-width: 60px;
   justify-content: center;
   margin: 5px;
   padding-left: 0.5rem;
@@ -201,6 +204,7 @@ a {
   margin: 0;
 }
 .icon img {
+  padding-bottom: 0.25rem;
   width: 70%;
 }
 .window {
@@ -366,6 +370,29 @@ a {
   display: flex;
   justify-content: center;
 }
+.openWindows {
+  margin-left: 0;
+  margin-right: auto;
+  display: flex;
+  /* border: 2px solid red; */
+  width: 100%;
+  overflow: hidden;
+}
+.openWindowIcon {
+  overflow-x: hidden;
+  width: 1fr;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 150px;
+  flex-grow: 3;
+  margin: 0.25rem;
+}
+.notPressed {
+  border: 2px outset black;
+}
+
 @media screen and (max-width: 400px) {
   .window {
     left: 10%;

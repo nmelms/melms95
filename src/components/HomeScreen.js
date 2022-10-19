@@ -38,7 +38,13 @@ export default function HomeScreen() {
 
   return (
     <div className="homeScreen">
-      <StartBar showMenu={showMenu} setShowMenu={setShowMenu} />
+      <StartBar
+        selected={selected}
+        setSelected={setSelected}
+        pages={pages}
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+      />
       {showMenu && <StartMenu />}
       <div className="desktop">
         <Icon
