@@ -307,6 +307,7 @@ a {
   height: fit-content;
   height: 400px;
   width: 40vw;
+  min-width: 250px;
   position: absolute;
   border: 2px outset black;
   border-top-color: whitesmoke;
