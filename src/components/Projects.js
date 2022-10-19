@@ -59,6 +59,11 @@ export default function Projects({
     setIsDragging(false);
     console.log("up");
   };
+
+  const bodyClick = (e) => {
+    e.stopPropagation();
+    handleClick("Bio");
+  };
   return (
     <div
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
@@ -96,9 +101,9 @@ export default function Projects({
       </nav>
       <div
         onClick={handleClick}
-        onPointerDown={(e) => e.stopPropagation()}
-        onPointerMove={(e) => e.stopPropagation()}
-        onPointerUp={(e) => e.stopPropagation()}
+        onPointerDown={(e) => bodyClick(e)}
+        onPointerMove={(e) => dragging(e)}
+        onPointerUp={(e) => dragEnd(e)}
         className="projectsBody"
       >
         <Icon

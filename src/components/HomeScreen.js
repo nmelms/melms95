@@ -12,6 +12,7 @@ import InvoiceProject from "./InvoiceProject";
 import PlanetProject from "./PlanetProject";
 
 export default function HomeScreen() {
+  const [isDragging, setIsDragging] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState("");
@@ -56,6 +57,8 @@ export default function HomeScreen() {
       </div>
       {pages.includes("Bio") && (
         <Window
+          isDragging={isDragging}
+          setIsDragging={setIsDragging}
           selected={selected}
           handleClick={() => handleClick("Bio")}
           pages={pages}

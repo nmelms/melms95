@@ -9,12 +9,18 @@ import cssSVG from "../assets/css.svg";
 import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 
-export default function Window({ pages, setPages, handleClick, selected }) {
+export default function Window({
+  pages,
+  setPages,
+  handleClick,
+  selected,
+  isDragging,
+  setIsDragging,
+}) {
   const nodeRef = useRef();
   const [fullScreen, setFullScreen] = useState("");
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
-  const [isDragging, setIsDragging] = useState(false);
   const [styles, setStyles] = useState();
   const [pos, setPos] = useState();
 
@@ -41,7 +47,6 @@ export default function Window({ pages, setPages, handleClick, selected }) {
   const dragging = (e) => {
     const left = e.screenX - diffX;
     const top = e.screenY - diffY;
-    console.log(e.screenX);
 
     if (isDragging && fullScreen !== "fullScreen") {
       setStyles({ left: left, top: top });
@@ -50,6 +55,10 @@ export default function Window({ pages, setPages, handleClick, selected }) {
   const dragEnd = (e) => {
     setIsDragging(false);
     console.log("up");
+  };
+  const bodyClick = (e) => {
+    e.stopPropagation();
+    handleClick("Bio");
   };
 
   return (
@@ -90,9 +99,9 @@ export default function Window({ pages, setPages, handleClick, selected }) {
       </nav>
       <div
         onClick={handleClick}
-        onPointerDown={(e) => e.stopPropagation()}
-        onPointerMove={(e) => e.stopPropagation()}
-        onPointerUp={(e) => e.stopPropagation()}
+        onPointerDown={(e) => bodyClick(e)}
+        onPointerMove={(e) => dragging(e)}
+        onPointerUp={(e) => dragEnd(e)}
         className="bioMain"
       >
         <img className="selfie" src={pic} />

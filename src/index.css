@@ -342,6 +342,7 @@ a {
   left: 60%;
   background-color: var(--primaryBg);
   height: fit-content;
+  min-width: 300px;
   width: 30vw;
 }
 .screenShot {
@@ -367,5 +368,8 @@ a {
 @media screen and (max-width: 400px) {
   .window {
     left: 10%;
+  }
+  .npsProject {
+    left: 5%;
   }
 }
