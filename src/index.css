@@ -318,6 +318,7 @@ a {
   border: 2px inset black;
 }
 .npsProject {
+  touch-action: none;
   border: 2px outset black;
   border-top-color: whitesmoke;
   border-left-color: whitesmoke;
