@@ -62,9 +62,9 @@ export default function Projects({
   return (
     <div
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      onMouseDown={(e) => dragStart(e)}
-      onMouseMove={(e) => dragging(e)}
-      onMouseUp={(e) => dragEnd(e)}
+      onPointerDown={(e) => dragStart(e)}
+      onPointerMove={(e) => dragging(e)}
+      onPointerUp={(e) => dragEnd(e)}
       data-testid="projectsWindow"
       ref={nodeRef}
       className={
