@@ -1,0 +1,5 @@
+[[headers]]
+  for = "/*.woff"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Content-Type = "./src/fonts/w95fa.woff"

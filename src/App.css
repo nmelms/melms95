@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "windows95";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Font_name"), url("/src/fonts/w95fa.woff") format("woff");
+}
+
+* {
+  font-family: windows95;
+}
+
 .App {
   text-align: center;
 }
