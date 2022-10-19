@@ -51,6 +51,7 @@ export default function Window({ pages, setPages, handleClick, selected }) {
     setIsDragging(false);
     console.log("up");
   };
+
   return (
     <div
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
@@ -87,7 +88,13 @@ export default function Window({ pages, setPages, handleClick, selected }) {
           </button>
         </div>
       </nav>
-      <div className="bioMain">
+      <div
+        onClick={handleClick}
+        onPointerDown={(e) => e.stopPropagation()}
+        onPointerMove={(e) => e.stopPropagation()}
+        onPointerUp={(e) => e.stopPropagation()}
+        className="bioMain"
+      >
         <img className="selfie" src={pic} />
         <h1>Nick Melms</h1>
         <h2>Front-end Web Developer </h2>

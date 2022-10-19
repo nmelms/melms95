@@ -50,15 +50,12 @@ export default function InvoiceProject({
   };
   const dragEnd = (e) => {
     setIsDragging(false);
-    console.log("up");
   };
 
   return (
     <div
+      onClick={handleClick}
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      onPointerDown={(e) => dragStart(e)}
-      onPointerMove={(e) => dragging(e)}
-      onPointerUp={(e) => dragEnd(e)}
       ref={nodeRef}
       className={
         selected === "invoice app"
@@ -66,7 +63,12 @@ export default function InvoiceProject({
           : "npsProject"
       }
     >
-      <nav className="windowNav">
+      <nav
+        onPointerDown={(e) => dragStart(e)}
+        onPointerMove={(e) => dragging(e)}
+        onPointerUp={(e) => dragEnd(e)}
+        className="windowNav"
+      >
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={file} />
           <p>Invoice App</p>

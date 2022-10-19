@@ -49,10 +49,8 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
   };
   return (
     <div
+      onClick={handleClick}
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      onPointerDown={(e) => dragStart(e)}
-      onPointerMove={(e) => dragging(e)}
-      onPointerUp={(e) => dragEnd(e)}
       ref={nodeRef}
       className={
         selected === "national parks"
@@ -60,7 +58,12 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
           : "npsProject"
       }
     >
-      <nav className="windowNav">
+      <nav
+        onPointerDown={(e) => dragStart(e)}
+        onPointerMove={(e) => dragging(e)}
+        onPointerUp={(e) => dragEnd(e)}
+        className="windowNav"
+      >
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={file} />
           <p>National Parks</p>

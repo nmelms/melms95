@@ -94,7 +94,13 @@ export default function Projects({
           </button>
         </div>
       </nav>
-      <div className="projectsBody">
+      <div
+        onClick={handleClick}
+        onPointerDown={(e) => e.stopPropagation()}
+        onPointerMove={(e) => e.stopPropagation()}
+        onPointerUp={(e) => e.stopPropagation()}
+        className="projectsBody"
+      >
         <Icon
           handleClick={(e) => handleIconClick(e, "national parks")}
           name="National Parks"
