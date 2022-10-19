@@ -7,7 +7,6 @@
 }
 * {
   scrollbar-color: var(--primaryBg) lightgray;
-  overflow: hidden;
 }
 ::-webkit-scrollbar {
   width: 20px;
@@ -213,6 +212,7 @@ a {
   flex-direction: column;
   background-color: var(--primaryBg);
   height: fit-content;
+  max-height: 400px;
   width: 50vw;
   min-width: 300px;
   position: absolute;
@@ -264,14 +264,11 @@ a {
   border-radius: 0;
 }
 .bioMain {
-  padding: 1rem;
-  max-width: 100%;
-  padding: 0 15% 0 15%;
-  height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .bioMain * {
-  margin: 0;
+  margin: 0 auto;
+  padding: 0 15% 0 15%;
 }
 .bioMain h1 {
   margin: 1rem 0rem 1rem 0rem;
@@ -279,13 +276,20 @@ a {
 }
 .selfie {
   height: 200px;
+  max-width: 100%;
   border-radius: 350%;
 }
 .logos {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem;
-  height: 50px;
+  height: fit-content;
 }
 .techLogo {
+  padding: 0;
   height: 50px;
 }
 .bioTitle {
@@ -352,6 +356,12 @@ a {
 .fullScreen {
   width: 100%;
   height: 100%;
+}
+.techText {
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 @media screen and (max-width: 400px) {
   .window {

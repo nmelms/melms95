@@ -87,7 +87,7 @@ export default function Window({ pages, setPages, handleClick, selected }) {
           </button>
         </div>
       </nav>
-      <section className="bioMain">
+      <div className="bioMain">
         <img className="selfie" src={pic} />
         <h1>Nick Melms</h1>
         <h2>Front-end Web Developer </h2>
@@ -111,9 +111,11 @@ export default function Window({ pages, setPages, handleClick, selected }) {
           <img alt="firebase " className="techLogo" src={firebaseSVG} />
           <img alt="html " className="techLogo" src={htmlSVG} />
           <img alt="css " className="techLogo" src={cssSVG} />
+        </div>
+        <div className="techText">
           <p>React/Javascript/Jest/fireBase/HTML/CSS</p>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
