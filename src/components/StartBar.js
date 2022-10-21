@@ -1,4 +1,5 @@
-import React, { useState, useRef, createRef } from "react";
+import React, { useState, useRef, createRef, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import Time from "./Time";
 import windowsIcon from "../assets/windowsIcon.png";
 
@@ -6,9 +7,20 @@ export default function StartBar({
   setShowMenu,
   showMenu,
   pages,
-  setSelected,
-  selected,
+  activePages,
+  setActivePages,
 }) {
+  const {
+    selected,
+    setSelected,
+    planetRef,
+    bioRef,
+    projectRef,
+    invoiceRef,
+    npsRef,
+    visiblePages,
+    setVisiblePages,
+  } = useContext(GlobalContext);
   const allItemRefs = useRef([]);
   allItemRefs.current = pages.map(
     (element, i) => allItemRefs.current[i] ?? createRef()
@@ -24,9 +36,34 @@ export default function StartBar({
   };
 
   const handleIconClick = (ref, page) => {
-    setSelected(page);
-    ref.current.classList.toggle("pressed");
-    ref.current.classList.toggle("openWindowIcon");
+    selected === page && setSelected("");
+    selected !== page && setSelected(page);
+    if (page === "Bio") {
+      bioRef.current.style.display === "flex" &&
+      bioRef.current.classList.contains("top")
+        ? (bioRef.current.style.display = "none")
+        : (bioRef.current.style.display = "flex");
+    } else if (page === "Projects") {
+      projectRef.current.style.display === "flex" &&
+      projectRef.current.classList.contains("top")
+        ? (projectRef.current.style.display = "none")
+        : (projectRef.current.style.display = "flex");
+    } else if (page === "planet facts") {
+      planetRef.current.style.display === "block" &&
+      planetRef.current.classList.contains("top")
+        ? (planetRef.current.style.display = "none")
+        : (planetRef.current.style.display = "block");
+    } else if (page === "national parks") {
+      npsRef.current.style.display === "block" &&
+      npsRef.current.classList.contains("top")
+        ? (npsRef.current.style.display = "none")
+        : (npsRef.current.style.display = "block");
+    } else if (page === "invoice app") {
+      invoiceRef.current.style.display === "block" &&
+      invoiceRef.current.classList.contains("top")
+        ? (invoiceRef.current.style.display = "none")
+        : (invoiceRef.current.style.display = "block");
+    }
   };
 
   return (
@@ -38,16 +75,14 @@ export default function StartBar({
         </div>
       </button>
       <div className="openWindows">
+        {console.log(selected)}
         {pages.map((page, index) => {
           return (
             <div
+              id={page}
               ref={allItemRefs.current[index]}
               onClick={() => handleIconClick(allItemRefs.current[index], page)}
-              className={
-                selected === page
-                  ? "openWindowIcon pressed"
-                  : "openWindowIcon notPressed"
-              }
+              className={selected === page ? "pressed" : "notPressed"}
             >
               {page}
             </div>

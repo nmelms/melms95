@@ -1,24 +1,34 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import folder from "../assets/folder2.png";
 import file from "../assets/file.png";
 import Icon from "./Icon";
 import Draggable from "react-draggable";
 
-export default function Projects({
-  setSelected,
-  handleClick,
-  pages,
-  setPages,
-  selected,
-}) {
+export default function Projects({ handleClick, pages, setPages }) {
+  const {
+    projectRef,
+    visiblePages,
+    setVisiblePages,
+    planetRef,
+    invoiceRef,
+    selected,
+    setSelected,
+  } = useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
   const [isDragging, setIsDragging] = useState(false);
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState({ display: "flex" });
   const nodeRef = useRef();
   const handleIconClick = (e, name) => {
     e.stopPropagation();
+    // if (name === "planet facts") {
+    //   planetRef.current.style.display = "block";
+    // } else if (name === "invoice app") {
+    //   invoiceRef.current.style.display = "block";
+    // }
+
     if (!pages.includes(name)) {
       setPages([...pages, name]);
       setSelected(name);
@@ -64,6 +74,15 @@ export default function Projects({
     e.stopPropagation();
     handleClick("Bio");
   };
+
+  const handleMinimizeClick = (e) => {
+    projectRef.current.style.display = "none";
+    setSelected("");
+  };
+
+  const miniDown = (e) => {
+    e.stopPropagation();
+  };
   return (
     <div
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
@@ -72,8 +91,9 @@ export default function Projects({
       onPointerUp={(e) => dragEnd(e)}
       data-testid="projectsWindow"
       ref={nodeRef}
+      ref={projectRef}
       className={
-        selected === "Projects" ? `projects top  ${fullScreen}` : "projects"
+        selected === "Projects" ? `Projects top  ${fullScreen}` : "Projects"
       }
     >
       <nav data-testid="nav" className="windowNav">
@@ -83,7 +103,8 @@ export default function Projects({
         </div>
         <div className="windowNavBtns">
           <button
-            // onClick={(event) => handleCloseClick(event)}
+            onClick={(event) => handleMinimizeClick(event)}
+            onPointerDown={(e) => miniDown(e)}
             className="navBtn"
           >
             _

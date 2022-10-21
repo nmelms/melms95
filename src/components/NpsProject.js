@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import nps from "../assets/npsScreenShot.png";
 import file from "../assets/file.png";
 import Draggable from "react-draggable";
@@ -6,12 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function NpsProject({ selected, setSelected, pages, setPages }) {
+export default function NpsProject({}) {
+  const { npsRef, selected, setSelected, pages, setPages } =
+    useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
   const [isDragging, setIsDragging] = useState(false);
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState({ display: "block" });
   const nodeRef = useRef();
   const handleClick = () => {
     setSelected("national parks");
@@ -25,6 +28,14 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
     fullScreen === "fullScreen"
       ? setFullScreen("")
       : setFullScreen("fullScreen");
+  };
+  const handleMinimizeClick = (e) => {
+    e.stopPropagation();
+    setSelected("");
+    npsRef.current.style.display = "none";
+  };
+  const miniDown = (e) => {
+    e.stopPropagation();
   };
   //All the logic to make the window draggable
   const dragStart = (e) => {
@@ -52,6 +63,7 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
       onClick={handleClick}
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
       ref={nodeRef}
+      ref={npsRef}
       className={
         selected === "national parks"
           ? `npsProject top ${fullScreen}`
@@ -70,7 +82,8 @@ export default function NpsProject({ selected, setSelected, pages, setPages }) {
         </div>
         <div className="windowNavBtns">
           <button
-            //onClick={(event) => handleCloseClick(event)}
+            onClick={(event) => handleMinimizeClick(event)}
+            onPointerDown={(e) => miniDown(e)}
             className="navBtn"
           >
             _

@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import Draggable from "react-draggable";
 import file from "../assets/file.png";
 import screenShot from "../assets/planetScreenshot.png";
@@ -6,18 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function InvoiceProject({
-  selected,
-  setSelected,
-  pages,
-  setPages,
-}) {
+export default function InvoiceProject({ pages, setPages }) {
+  const { planetRef, selected, setSelected } = useContext(GlobalContext);
   const nodeRef = useRef();
   const [fullScreen, setFullScreen] = useState("");
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
   const [isDragging, setIsDragging] = useState(false);
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState({ display: "block" });
   const handleClick = () => {
     setSelected("planet facts");
   };
@@ -50,17 +47,27 @@ export default function InvoiceProject({
   };
   const dragEnd = (e) => {
     setIsDragging(false);
-    console.log("up");
+  };
+
+  const handleMinimizeClick = (e) => {
+    e.stopPropagation();
+    setSelected("");
+    planetRef.current.style.display = "none";
+  };
+  const miniDown = (e) => {
+    e.stopPropagation();
   };
 
   return (
     <div
+      id="planetProject"
       onClick={handleClick}
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
       ref={nodeRef}
+      ref={planetRef}
       className={
         selected === "planet facts"
-          ? `npsProject top ${fullScreen}`
+          ? `npsProject top  ${fullScreen}`
           : "npsProject"
       }
     >
@@ -76,7 +83,8 @@ export default function InvoiceProject({
         </div>
         <div className="windowNavBtns">
           <button
-            //onClick={(event) => handleCloseClick(event)}
+            onClick={(event) => handleMinimizeClick(event)}
+            onPointerDown={(e) => miniDown(e)}
             className="navBtn"
           >
             _

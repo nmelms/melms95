@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import Draggable from "react-draggable";
 import file from "../assets/file.png";
 import screenShot from "../assets/invoiceScreenshot.png";
@@ -6,12 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function InvoiceProject({
-  selected,
-  setSelected,
-  pages,
-  setPages,
-}) {
+export default function InvoiceProject({}) {
+  const { invoiceRef, selected, setSelected, pages, setPages } =
+    useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
@@ -30,6 +28,11 @@ export default function InvoiceProject({
     fullScreen === "fullScreen"
       ? setFullScreen("")
       : setFullScreen("fullScreen");
+  };
+  const handleMinimizeClick = (e) => {
+    e.stopPropagation();
+    setSelected("");
+    invoiceRef.current.style.display = "none";
   };
   //All the logic to make the window draggable
   const dragStart = (e) => {
@@ -51,12 +54,16 @@ export default function InvoiceProject({
   const dragEnd = (e) => {
     setIsDragging(false);
   };
+  const miniDown = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <div
       onClick={handleClick}
       style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
       ref={nodeRef}
+      ref={invoiceRef}
       className={
         selected === "invoice app"
           ? `npsProject top ${fullScreen}`
@@ -75,7 +82,8 @@ export default function InvoiceProject({
         </div>
         <div className="windowNavBtns">
           <button
-            //onClick={(event) => handleCloseClick(event)}
+            onClick={(event) => handleMinimizeClick(event)}
+            onPointerDown={(e) => miniDown(e)}
             className="navBtn"
           >
             _

@@ -95,7 +95,9 @@ a {
 }
 
 .pressed {
+  margin: 0.25rem;
   border: 2px inset;
+  width: 150px;
   border-bottom-color: white;
   border-right-color: white;
 }
@@ -207,7 +209,7 @@ a {
   padding-bottom: 0.25rem;
   width: 70%;
 }
-.window {
+.Bio {
   touch-action: none;
   overflow-y: none;
   overflow-x: hidden;
@@ -300,7 +302,7 @@ a {
 .bioTitle {
   margin: 1rem 0 0.5rem 0;
 }
-.projects {
+.Projects {
   touch-action: none;
   overflow-y: none;
   overflow-x: hidden;
@@ -338,6 +340,7 @@ a {
   border: 2px inset black;
 }
 .npsProject {
+  display: block;
   touch-action: none;
   border: 2px outset black;
   border-top-color: whitesmoke;
@@ -391,6 +394,13 @@ a {
 }
 .notPressed {
   border: 2px outset black;
+  width: 150px;
+  margin: 0.25rem;
+}
+.selected {
+  width: 1fr;
+  min-width: 50px;
+  border: 2px inset red;
 }
 
 @media screen and (max-width: 400px) {

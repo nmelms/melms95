@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import myComputer from "../assets/mycomputer.png";
 import pic from "../assets/me.jpg";
 import Draggable from "react-draggable";
@@ -13,15 +14,15 @@ export default function Window({
   pages,
   setPages,
   handleClick,
-  selected,
   isDragging,
   setIsDragging,
 }) {
   const nodeRef = useRef();
+  const { bioRef, selected, setSelected } = useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState({ display: "flex" });
   const [pos, setPos] = useState();
 
   const handleCloseClick = (event) => {
@@ -35,10 +36,14 @@ export default function Window({
       : setFullScreen("fullScreen");
   };
 
+  const handleMinimizeClick = (e) => {
+    bioRef.current.style.display = "none";
+    setSelected("");
+  };
+
   //All the logic to make the window draggable
   const dragStart = (e) => {
     handleClick("Bio");
-    console.log(e.currentTarget.getBoundingClientRect().left);
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
     setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
     setIsDragging(true);
@@ -54,11 +59,13 @@ export default function Window({
   };
   const dragEnd = (e) => {
     setIsDragging(false);
-    console.log("up");
   };
   const bodyClick = (e) => {
     e.stopPropagation();
     handleClick("Bio");
+  };
+  const miniDown = (e) => {
+    e.stopPropagation();
   };
 
   return (
@@ -68,8 +75,9 @@ export default function Window({
       onPointerMove={(e) => dragging(e)}
       onPointerUp={(e) => dragEnd(e)}
       ref={nodeRef}
+      ref={bioRef}
       data-testid="Window"
-      className={selected === "Bio" ? `window top  ${fullScreen}` : "window"}
+      className={selected === "Bio" ? `Bio top  ${fullScreen}` : "Bio"}
     >
       <nav className="windowNav">
         <div className="nameAndIcon">
@@ -78,7 +86,8 @@ export default function Window({
         </div>
         <div className="windowNavBtns">
           <button
-            onClick={(event) => handleCloseClick(event)}
+            onClick={(event) => handleMinimizeClick(event)}
+            onPointerDown={(e) => miniDown(e)}
             className="navBtn"
           >
             _

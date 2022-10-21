@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, createRef, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 import StartBar from "./StartBar";
 import StartMenu from "./StartMenu";
 import Icon from "./Icon";
@@ -12,10 +13,18 @@ import InvoiceProject from "./InvoiceProject";
 import PlanetProject from "./PlanetProject";
 
 export default function HomeScreen() {
+  const {
+    pages,
+    setPages,
+    visiblePages,
+    setVisiblePages,
+    selected,
+    setSelected,
+  } = useContext(GlobalContext);
   const [isDragging, setIsDragging] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const [pages, setPages] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [activePages, setActivePages] = useState([]);
+
   const appHeight = () =>
     document.documentElement.style.setProperty(
       "--app-height",
@@ -26,21 +35,18 @@ export default function HomeScreen() {
 
   const windowRef = useRef();
   console.log(selected);
-
   const handleClick = (name) => {
+    setSelected(name);
     if (!pages.includes(name)) {
       setPages([...pages, name]);
-      setSelected(name);
-    } else {
-      setSelected(name);
     }
   };
 
   return (
     <div className="homeScreen">
       <StartBar
-        selected={selected}
-        setSelected={setSelected}
+        activePages={activePages}
+        setActivePages={setActivePages}
         pages={pages}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
@@ -69,6 +75,8 @@ export default function HomeScreen() {
           handleClick={() => handleClick("Bio")}
           pages={pages}
           setPages={setPages}
+          activePages={activePages}
+          setActivePages={setActivePages}
         />
       )}
       {pages.includes("Projects") && (
