@@ -6,7 +6,6 @@
   --app-height: 100%;
 }
 * {
-  touch-action: none;
   scrollbar-color: var(--primaryBg) lightgray;
 }
 ::-webkit-scrollbar {
@@ -267,7 +266,6 @@ a {
   border-radius: 0;
 }
 .bioMain {
-  touch-action: auto;
   overflow-y: scroll;
   overflow-x: hidden;
 }
