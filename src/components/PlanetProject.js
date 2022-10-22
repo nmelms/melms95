@@ -6,15 +6,34 @@ import screenShot from "../assets/planetScreenshot.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { useDrag } from "@use-gesture/react";
+import { useSpring, animated } from "@react-spring/web";
 
-export default function InvoiceProject({ pages, setPages }) {
-  const { planetRef, selected, setSelected } = useContext(GlobalContext);
-  const nodeRef = useRef();
+export default function PlanetProject({ pages, setPages }) {
+  const {
+    // setDiffX,
+    // setDiffY,
+    planetRef,
+    selected,
+    setSelected,
+  } = useContext(GlobalContext);
+
+  const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [fullScreen, setFullScreen] = useState("");
-  const [diffX, setDiffX] = useState();
-  const [diffY, setDiffY] = useState();
-  const [isDragging, setIsDragging] = useState(false);
-  const [styles, setStyles] = useState({ display: "block" });
+
+  const [styles, setStyles] = useState({
+    display: "block",
+    left: windowPosition.x,
+    top: windowPosition.y,
+  });
+
+  const bindWindowPos = useDrag((params) => {
+    setWindowPosition({
+      x: params.offset[0],
+      y: params.offset[1],
+    });
+  });
+
   const handleClick = () => {
     setSelected("planet facts");
   };
@@ -28,26 +47,6 @@ export default function InvoiceProject({ pages, setPages }) {
       ? setFullScreen("")
       : setFullScreen("fullScreen");
   };
-  //All the logic to make the window draggable
-  const dragStart = (e) => {
-    handleClick();
-    console.log(e.currentTarget.getBoundingClientRect().left);
-    setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
-    setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
-    setIsDragging(true);
-  };
-
-  const dragging = (e) => {
-    const left = e.screenX - diffX;
-    const top = e.screenY - diffY;
-
-    if (isDragging && fullScreen !== "fullScreen") {
-      setStyles({ left: left, top: top });
-    }
-  };
-  const dragEnd = (e) => {
-    setIsDragging(false);
-  };
 
   const handleMinimizeClick = (e) => {
     e.stopPropagation();
@@ -60,10 +59,12 @@ export default function InvoiceProject({ pages, setPages }) {
 
   return (
     <div
+      style={
+        fullScreen === "fullScreen"
+          ? { left: "0", top: "0" }
+          : { left: windowPosition.x, top: windowPosition.y }
+      }
       id="planetProject"
-      onClick={handleClick}
-      style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      ref={nodeRef}
       ref={planetRef}
       className={
         selected === "planet facts"
@@ -71,12 +72,7 @@ export default function InvoiceProject({ pages, setPages }) {
           : "npsProject"
       }
     >
-      <nav
-        onPointerDown={(e) => dragStart(e)}
-        onPointerMove={(e) => dragging(e)}
-        onPointerUp={(e) => dragEnd(e)}
-        className="windowNav"
-      >
+      <nav {...bindWindowPos()} className="windowNav">
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={file} />
           <p>Planet Facts</p>

@@ -6,6 +6,7 @@
   --app-height: 100%;
 }
 * {
+  touch-action: none;
   scrollbar-color: var(--primaryBg) lightgray;
 }
 ::-webkit-scrollbar {
@@ -24,11 +25,9 @@ html {
   height: 100%;
   overflow-y: hidden;
   overflow-x: hidden;
-  touch-action: none;
 }
 
 body {
-  touch-action: none;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -107,8 +106,6 @@ a {
 }
 .startBtnIcon {
   height: 80%;
-}
-.touch {
 }
 .clock {
   display: flex;
@@ -340,7 +337,6 @@ a {
   border: 2px inset black;
 }
 .npsProject {
-  display: block;
   touch-action: none;
   border: 2px outset black;
   border-top-color: whitesmoke;

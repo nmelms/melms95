@@ -20,6 +20,7 @@ export default function HomeScreen() {
     setVisiblePages,
     selected,
     setSelected,
+    dragging,
   } = useContext(GlobalContext);
   const [isDragging, setIsDragging] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -69,8 +70,6 @@ export default function HomeScreen() {
       </div>
       {pages.includes("Bio") && (
         <Window
-          isDragging={isDragging}
-          setIsDragging={setIsDragging}
           selected={selected}
           handleClick={() => handleClick("Bio")}
           pages={pages}

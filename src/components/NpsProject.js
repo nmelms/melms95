@@ -1,21 +1,25 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import GlobalContext from "../GlobalContext";
 import nps from "../assets/npsScreenShot.png";
 import file from "../assets/file.png";
-import Draggable from "react-draggable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { useDrag } from "@use-gesture/react";
 
-export default function NpsProject({}) {
-  const { npsRef, selected, setSelected, pages, setPages } =
+export default function NpsProject() {
+  const { planetRef, selected, setSelected, pages, setPages, npsRef } =
     useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
-  const [diffX, setDiffX] = useState();
-  const [diffY, setDiffY] = useState();
-  const [isDragging, setIsDragging] = useState(false);
-  const [styles, setStyles] = useState({ display: "block" });
-  const nodeRef = useRef();
+  const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+
+  const bindWindowPos = useDrag((params) => {
+    setWindowPosition({
+      x: params.offset[0],
+      y: params.offset[1],
+    });
+  });
+
   const handleClick = () => {
     setSelected("national parks");
   };
@@ -37,32 +41,14 @@ export default function NpsProject({}) {
   const miniDown = (e) => {
     e.stopPropagation();
   };
-  //All the logic to make the window draggable
-  const dragStart = (e) => {
-    handleClick();
-    console.log(e.currentTarget.getBoundingClientRect().left);
-    setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
-    setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
-    setIsDragging(true);
-  };
-
-  const dragging = (e) => {
-    const left = e.screenX - diffX;
-    const top = e.screenY - diffY;
-
-    if (isDragging && fullScreen !== "fullScreen") {
-      setStyles({ left: left, top: top });
-    }
-  };
-  const dragEnd = (e) => {
-    setIsDragging(false);
-    console.log("up");
-  };
   return (
     <div
       onClick={handleClick}
-      style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      ref={nodeRef}
+      style={
+        fullScreen === "fullScreen"
+          ? { left: "0", top: "0" }
+          : { left: windowPosition.x, top: windowPosition.y }
+      }
       ref={npsRef}
       className={
         selected === "national parks"
@@ -70,12 +56,7 @@ export default function NpsProject({}) {
           : "npsProject"
       }
     >
-      <nav
-        onPointerDown={(e) => dragStart(e)}
-        onPointerMove={(e) => dragging(e)}
-        onPointerUp={(e) => dragEnd(e)}
-        className="windowNav"
-      >
+      <nav {...bindWindowPos()} className="windowNav">
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={file} />
           <p>National Parks</p>

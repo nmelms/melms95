@@ -9,21 +9,20 @@ import htmlSVG from "../assets/html.svg";
 import cssSVG from "../assets/css.svg";
 import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
+import { useDrag } from "@use-gesture/react";
 
-export default function Window({
-  pages,
-  setPages,
-  handleClick,
-  isDragging,
-  setIsDragging,
-}) {
+export default function Window({ pages, setPages, handleClick }) {
   const nodeRef = useRef();
   const { bioRef, selected, setSelected } = useContext(GlobalContext);
+  const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [fullScreen, setFullScreen] = useState("");
-  const [diffX, setDiffX] = useState();
-  const [diffY, setDiffY] = useState();
-  const [styles, setStyles] = useState({ display: "flex" });
-  const [pos, setPos] = useState();
+
+  const bindWindowPos = useDrag((params) => {
+    setWindowPosition({
+      x: params.offset[0],
+      y: params.offset[1],
+    });
+  });
 
   const handleCloseClick = (event) => {
     const newArr = pages;
@@ -41,25 +40,6 @@ export default function Window({
     setSelected("");
   };
 
-  //All the logic to make the window draggable
-  const dragStart = (e) => {
-    handleClick("Bio");
-    setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
-    setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
-    setIsDragging(true);
-  };
-
-  const dragging = (e) => {
-    const left = e.screenX - diffX;
-    const top = e.screenY - diffY;
-
-    if (isDragging && fullScreen !== "fullScreen") {
-      setStyles({ left: left, top: top });
-    }
-  };
-  const dragEnd = (e) => {
-    setIsDragging(false);
-  };
   const bodyClick = (e) => {
     e.stopPropagation();
     handleClick("Bio");
@@ -70,16 +50,17 @@ export default function Window({
 
   return (
     <div
-      style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      onPointerDown={(e) => dragStart(e)}
-      onPointerMove={(e) => dragging(e)}
-      onPointerUp={(e) => dragEnd(e)}
+      style={
+        fullScreen === "fullScreen"
+          ? { left: "0", top: "0" }
+          : { left: windowPosition.x, top: windowPosition.y }
+      }
       ref={nodeRef}
       ref={bioRef}
       data-testid="Window"
       className={selected === "Bio" ? `Bio top  ${fullScreen}` : "Bio"}
     >
-      <nav className="windowNav">
+      <nav {...bindWindowPos()} className="windowNav">
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={myComputer} />
           <p>My Bio</p>
@@ -106,13 +87,7 @@ export default function Window({
           </button>
         </div>
       </nav>
-      <div
-        onClick={handleClick}
-        onPointerDown={(e) => bodyClick(e)}
-        onPointerMove={(e) => dragging(e)}
-        onPointerUp={(e) => dragEnd(e)}
-        className="bioMain"
-      >
+      <div onClick={handleClick} className="bioMain">
         <img className="selfie" src={pic} />
         <h1>Nick Melms</h1>
         <h2>Front-end Web Developer </h2>

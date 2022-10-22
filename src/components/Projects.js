@@ -3,7 +3,7 @@ import GlobalContext from "../GlobalContext";
 import folder from "../assets/folder2.png";
 import file from "../assets/file.png";
 import Icon from "./Icon";
-import Draggable from "react-draggable";
+import { useDrag } from "@use-gesture/react";
 
 export default function Projects({ handleClick, pages, setPages }) {
   const {
@@ -15,20 +15,18 @@ export default function Projects({ handleClick, pages, setPages }) {
     selected,
     setSelected,
   } = useContext(GlobalContext);
+  const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [fullScreen, setFullScreen] = useState("");
-  const [diffX, setDiffX] = useState();
-  const [diffY, setDiffY] = useState();
-  const [isDragging, setIsDragging] = useState(false);
-  const [styles, setStyles] = useState({ display: "flex" });
-  const nodeRef = useRef();
+
+  const bindWindowPos = useDrag((params) => {
+    setWindowPosition({
+      x: params.offset[0],
+      y: params.offset[1],
+    });
+  });
+
   const handleIconClick = (e, name) => {
     e.stopPropagation();
-    // if (name === "planet facts") {
-    //   planetRef.current.style.display = "block";
-    // } else if (name === "invoice app") {
-    //   invoiceRef.current.style.display = "block";
-    // }
-
     if (!pages.includes(name)) {
       setPages([...pages, name]);
       setSelected(name);
@@ -49,32 +47,6 @@ export default function Projects({ handleClick, pages, setPages }) {
       : setFullScreen("fullScreen");
   };
 
-  const dragStart = (e) => {
-    handleClick("Projects");
-    console.log(e.currentTarget.getBoundingClientRect().left);
-    setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
-    setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
-    setIsDragging(true);
-  };
-
-  const dragging = (e) => {
-    const left = e.screenX - diffX;
-    const top = e.screenY - diffY;
-
-    if (isDragging && fullScreen !== "fullScreen") {
-      setStyles({ left: left, top: top });
-    }
-  };
-  const dragEnd = (e) => {
-    setIsDragging(false);
-    console.log("up");
-  };
-
-  const bodyClick = (e) => {
-    e.stopPropagation();
-    handleClick("Bio");
-  };
-
   const handleMinimizeClick = (e) => {
     projectRef.current.style.display = "none";
     setSelected("");
@@ -85,18 +57,19 @@ export default function Projects({ handleClick, pages, setPages }) {
   };
   return (
     <div
-      style={fullScreen === "fullScreen" ? { left: "0", top: "0" } : styles}
-      onPointerDown={(e) => dragStart(e)}
-      onPointerMove={(e) => dragging(e)}
-      onPointerUp={(e) => dragEnd(e)}
+      onClick={handleClick}
+      style={
+        fullScreen === "fullScreen"
+          ? { left: "0", top: "0" }
+          : { left: windowPosition.x, top: windowPosition.y }
+      }
       data-testid="projectsWindow"
-      ref={nodeRef}
       ref={projectRef}
       className={
         selected === "Projects" ? `Projects top  ${fullScreen}` : "Projects"
       }
     >
-      <nav data-testid="nav" className="windowNav">
+      <nav {...bindWindowPos()} data-testid="nav" className="windowNav">
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={folder} />
           <p>Projects</p>
@@ -120,13 +93,7 @@ export default function Projects({ handleClick, pages, setPages }) {
           </button>
         </div>
       </nav>
-      <div
-        onClick={handleClick}
-        onPointerDown={(e) => bodyClick(e)}
-        onPointerMove={(e) => dragging(e)}
-        onPointerUp={(e) => dragEnd(e)}
-        className="projectsBody"
-      >
+      <div onClick={handleClick} className="projectsBody">
         <Icon
           handleClick={(e) => handleIconClick(e, "national parks")}
           name="National Parks"
