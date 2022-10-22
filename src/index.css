@@ -267,6 +267,7 @@ a {
   border-radius: 0;
 }
 .bioMain {
+  touch-action: auto;
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -59,6 +59,7 @@ export default function PlanetProject({ pages, setPages }) {
 
   return (
     <div
+      onPointerDown={handleClick}
       style={
         fullScreen === "fullScreen"
           ? { left: "0", top: "0" }

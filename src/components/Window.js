@@ -11,7 +11,7 @@ import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 import { useDrag } from "@use-gesture/react";
 
-export default function Window({ pages, setPages, handleClick }) {
+export default function Window({ pages, setPages }) {
   const nodeRef = useRef();
   const { bioRef, selected, setSelected } = useContext(GlobalContext);
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
@@ -23,6 +23,10 @@ export default function Window({ pages, setPages, handleClick }) {
       y: params.offset[1],
     });
   });
+
+  const handleClick = () => {
+    setSelected("Bio");
+  };
 
   const handleCloseClick = (event) => {
     const newArr = pages;
@@ -40,22 +44,21 @@ export default function Window({ pages, setPages, handleClick }) {
     setSelected("");
   };
 
-  const bodyClick = (e) => {
-    e.stopPropagation();
-    handleClick("Bio");
-  };
   const miniDown = (e) => {
     e.stopPropagation();
   };
 
   return (
     <div
+      onPointerDown={handleClick}
       style={
         fullScreen === "fullScreen"
           ? { left: "0", top: "0" }
-          : { left: windowPosition.x, top: windowPosition.y }
+          : {
+              left: windowPosition.x,
+              top: windowPosition.y,
+            }
       }
-      ref={nodeRef}
       ref={bioRef}
       data-testid="Window"
       className={selected === "Bio" ? `Bio top  ${fullScreen}` : "Bio"}
@@ -87,7 +90,7 @@ export default function Window({ pages, setPages, handleClick }) {
           </button>
         </div>
       </nav>
-      <div onClick={handleClick} className="bioMain">
+      <div className="bioMain">
         <img className="selfie" src={pic} />
         <h1>Nick Melms</h1>
         <h2>Front-end Web Developer </h2>

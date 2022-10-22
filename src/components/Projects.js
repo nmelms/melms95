@@ -5,7 +5,7 @@ import file from "../assets/file.png";
 import Icon from "./Icon";
 import { useDrag } from "@use-gesture/react";
 
-export default function Projects({ handleClick, pages, setPages }) {
+export default function Projects({ pages, setPages }) {
   const {
     projectRef,
     visiblePages,
@@ -17,6 +17,11 @@ export default function Projects({ handleClick, pages, setPages }) {
   } = useContext(GlobalContext);
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [fullScreen, setFullScreen] = useState("");
+
+  const handleClick = () => {
+    console.log("lcldafkdsak");
+    setSelected("Projects");
+  };
 
   const bindWindowPos = useDrag((params) => {
     setWindowPosition({
@@ -41,7 +46,8 @@ export default function Projects({ handleClick, pages, setPages }) {
     setPages(filtered);
   };
 
-  const handleFullScreenClick = () => {
+  const handleFullScreenClick = (e) => {
+    e.stopPropagation();
     fullScreen === "fullScreen"
       ? setFullScreen("")
       : setFullScreen("fullScreen");
@@ -57,7 +63,7 @@ export default function Projects({ handleClick, pages, setPages }) {
   };
   return (
     <div
-      onClick={handleClick}
+      onPointerDown={handleClick}
       style={
         fullScreen === "fullScreen"
           ? { left: "0", top: "0" }
@@ -93,7 +99,7 @@ export default function Projects({ handleClick, pages, setPages }) {
           </button>
         </div>
       </nav>
-      <div onClick={handleClick} className="projectsBody">
+      <div className="projectsBody">
         <Icon
           handleClick={(e) => handleIconClick(e, "national parks")}
           name="National Parks"

@@ -18,16 +18,6 @@ export function GlobalProvider({ children }) {
   const [visiblePages, setVisiblePages] = useState([]);
   const [selected, setSelected] = useState("");
 
-  const dragging = (e) => {
-    const left = e.screenX - diffX;
-    const top = e.screenY - diffY;
-
-    if (isDragging && fullScreen !== "fullScreen") {
-      setStyles({ left: left, top: top });
-      console.log("draggin");
-    }
-  };
-
   return (
     <GlobalContext.Provider
       value={{
@@ -35,7 +25,6 @@ export function GlobalProvider({ children }) {
         setFullScreen,
         styles,
         setStyles,
-        dragging,
         setDiffX,
         setDiffY,
         diffY,

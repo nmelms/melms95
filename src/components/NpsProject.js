@@ -43,7 +43,7 @@ export default function NpsProject() {
   };
   return (
     <div
-      onClick={handleClick}
+      onPointerDown={handleClick}
       style={
         fullScreen === "fullScreen"
           ? { left: "0", top: "0" }

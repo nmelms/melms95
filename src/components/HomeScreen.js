@@ -21,8 +21,9 @@ export default function HomeScreen() {
     selected,
     setSelected,
     dragging,
+    bioRef,
+    projectRef,
   } = useContext(GlobalContext);
-  const [isDragging, setIsDragging] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [activePages, setActivePages] = useState([]);
 
@@ -35,34 +36,39 @@ export default function HomeScreen() {
   appHeight();
 
   const windowRef = useRef();
-  console.log(selected);
-  const handleClick = (name) => {
+
+  const handleClick = (ref, name) => {
     setSelected(name);
     if (!pages.includes(name)) {
       setPages([...pages, name]);
+    }
+    if (name === "Bio") {
+      bioRef.current.style.display === "flex" &&
+      bioRef.current.classList.contains("top")
+        ? (bioRef.current.style.display = "none")
+        : (bioRef.current.style.display = "flex");
+    } else if (name === "Projects") {
+      projectRef.current.style.display === "flex" &&
+      projectRef.current.classList.contains("top")
+        ? (projectRef.current.style.display = "none")
+        : (projectRef.current.style.display = "flex");
     }
   };
 
   return (
     <div className="homeScreen">
-      <StartBar
-        activePages={activePages}
-        setActivePages={setActivePages}
-        pages={pages}
-        showMenu={showMenu}
-        setShowMenu={setShowMenu}
-      />
+      <StartBar pages={pages} showMenu={showMenu} setShowMenu={setShowMenu} />
       {showMenu && <StartMenu />}
       <div className="desktop">
         <Icon
-          handleClick={() => handleClick("Bio")}
+          handleClick={(e) => handleClick(e, "Bio")}
           name="My Bio"
           alt="bio"
           imgSrc={mycomputer}
         />
         <Icon name="Recycle Bin" alt="recycle bin" imgSrc={recycle} />
         <Icon
-          handleClick={() => handleClick("Projects")}
+          handleClick={(e) => handleClick(e, "Projects")}
           name="Projects"
           alt="projects"
           imgSrc={folder}
