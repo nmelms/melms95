@@ -3,7 +3,7 @@
   --primaryBg: #c0c0c0;
   --secondaryBg: #808080;
   --hoverBlue: #00007c;
-  --app-height: 100%;
+  --app-height: 100vh;
 }
 * {
   scrollbar-color: var(--primaryBg) lightgray;
@@ -27,6 +27,7 @@ html {
 }
 
 body {
+  overflow: none;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -45,10 +46,12 @@ a {
   color: inherit;
 }
 .homeScreen {
-  position: relative;
+  overflow: hidden;
+  position: fixed;
   display: flex;
   background-color: var(--desktopBg);
   height: var(--app-height);
+  max-height: var(--app-height);
   width: 100vw;
 }
 
