@@ -93,10 +93,12 @@ export default function Window({ pages, setPages }) {
       <div className="bioMain">
         <img className="selfie" src={pic} />
         <h1>Nick Melms</h1>
-        <h2>Front-end Web Developer </h2>
+        <h2>Front-End Web Developer </h2>
 
         <h2 className="bioTitle">
-          <b>About Me</b>
+          <b>
+            <u>About Me</u>
+          </b>
         </h2>
         <p>
           I'm Nick, a front-end web developer. I make responsive web
@@ -105,7 +107,9 @@ export default function Window({ pages, setPages }) {
           sites. When I'm not coding, I enjoy exploring the outdoors.
         </p>
         <h2 className="bioTitle">
-          <b>Skills</b>
+          <b>
+            <u>Skills</u>
+          </b>
         </h2>
         <div className="logos">
           <img alt="react " className="techLogo" src={reactSVG} />
