@@ -8,9 +8,10 @@ import { useDrag } from "@use-gesture/react";
 export default function Projects({ pages, setPages }) {
   const {
     projectRef,
+    npsRef,
+    planetRef,
     visiblePages,
     setVisiblePages,
-    planetRef,
     invoiceRef,
     selected,
     setSelected,
@@ -38,6 +39,14 @@ export default function Projects({ pages, setPages }) {
       console.log(selected);
     } else {
       setSelected(name);
+    }
+
+    if (name === "Invoice App") {
+      invoiceRef.current.style.display = "block";
+    } else if (name === "National Parks") {
+      npsRef.current.style.display = "block";
+    } else if (name === "Planet Facts") {
+      planetRef.current.style.display = "block";
     }
   };
   const handleCloseClick = (event) => {
@@ -101,19 +110,19 @@ export default function Projects({ pages, setPages }) {
       </nav>
       <div className="projectsBody">
         <Icon
-          handleClick={(e) => handleIconClick(e, "national parks")}
+          handleClick={(e) => handleIconClick(e, "National Parks")}
           name="National Parks"
           imgSrc={file}
           alt="national parks project"
         />
         <Icon
-          handleClick={(e) => handleIconClick(e, "invoice app")}
+          handleClick={(e) => handleIconClick(e, "Invoice App")}
           name="Invoice App"
           imgSrc={file}
           alt="invoice project"
         />
         <Icon
-          handleClick={(e) => handleIconClick(e, "planet facts")}
+          handleClick={(e) => handleIconClick(e, "Planet Facts")}
           name="Planet Facts"
           imgSrc={file}
           alt="planet facts project"

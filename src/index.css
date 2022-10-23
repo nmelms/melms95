@@ -22,7 +22,6 @@
 
 html {
   height: 100%;
-  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -95,6 +94,9 @@ a {
   align-items: center;
 }
 .notPressed {
+  overflow-x: hidden;
+  min-width: 50px;
+  white-space: nowrap;
   display: flex;
   font-size: 1.5rem;
   justify-content: start;
@@ -103,7 +105,7 @@ a {
   border: 2px outset black;
   border-top-color: white;
   border-left-color: white;
-  width: 150px;
+  width: 170px;
   margin: 0.25rem;
 }
 .notPressed img {
@@ -111,6 +113,9 @@ a {
 }
 
 .pressed {
+  overflow-x: hidden;
+  min-width: 50px;
+  white-space: nowrap;
   display: flex;
   font-size: 1.5rem;
   justify-content: start;
@@ -119,7 +124,7 @@ a {
   background-color: lightgray;
   margin: 0.25rem;
   border: 2px inset;
-  width: 150px;
+  width: 170px;
   border-bottom-color: white;
   border-right-color: white;
 }
@@ -363,7 +368,9 @@ a {
   border: 2px inset black;
 }
 .npsProject {
-  touch-action: none;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  /* touch-action: none; */
   border: 2px outset black;
   border-top-color: whitesmoke;
   border-left-color: whitesmoke;
@@ -373,6 +380,8 @@ a {
   background-color: var(--primaryBg);
   height: fit-content;
   min-width: 300px;
+  height: 500px;
+  max-height: 500px;
   width: 30vw;
 }
 .screenShot {
@@ -386,9 +395,14 @@ a {
   justify-content: space-between;
 }
 .fullScreen {
+  font-size: 1.5rem;
+  overflow-y: scroll;
   min-width: 100%;
   min-height: 100%;
+  max-height: 100vh;
+  max-width: 100vw;
 }
+
 .techText {
   max-width: 100%;
   text-align: center;
@@ -401,7 +415,7 @@ a {
   display: flex;
   /* border: 2px solid red; */
   width: 100%;
-  overflow: hidden;
+  overflow-x: scroll;
 }
 .openWindowIcon {
   overflow-x: hidden;
@@ -419,6 +433,14 @@ a {
   width: 1fr;
   min-width: 50px;
   border: 2px inset red;
+}
+.projectBody {
+  overflow-y: scroll;
+  max-height: 90%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 400px) {

@@ -21,11 +21,11 @@ export default function NpsProject() {
   });
 
   const handleClick = () => {
-    setSelected("national parks");
+    setSelected("National Parks");
   };
   const handleCloseClick = (event) => {
     const newArr = pages;
-    const filtered = newArr.filter((item) => item !== "national parks");
+    const filtered = newArr.filter((item) => item !== "National Parks");
     setPages(filtered);
   };
   const handleFullScreenClick = () => {
@@ -41,6 +41,7 @@ export default function NpsProject() {
   const miniDown = (e) => {
     e.stopPropagation();
   };
+
   return (
     <div
       onPointerDown={handleClick}
@@ -51,7 +52,7 @@ export default function NpsProject() {
       }
       ref={npsRef}
       className={
-        selected === "national parks"
+        selected === "National Parks"
           ? `npsProject top ${fullScreen}`
           : "npsProject"
       }
@@ -84,31 +85,34 @@ export default function NpsProject() {
           </button>
         </div>
       </nav>
-      <h1>Explore National Parks</h1>
-      <img
-        alt="screen shot of National Parks project"
-        className="screenShot"
-        src={nps}
-      />
-      <h2>About This Project</h2>
-      <p>
-        This is a project I designed and created using the National Park Service
-        API. In this project I use fetch to retreive data from the NPS API and
-        display it using React. You can view active webcams as well as indiviual
-        park info such as entrance fees and park location. Have fun exploring
-        America's National Parks!
-      </p>
-      <div className="icons">
-        <a href="https://github.com/Nmelms/national-parks">
-          <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
-        </a>
-        <a href="https://nmelmsnps.netlify.app">
-          <FontAwesomeIcon
-            title="live project link"
-            size="2x"
-            icon={faArrowUpRightFromSquare}
-          />
-        </a>
+      <div className="projectBody">
+        <h1>Explore National Parks</h1>
+        <img
+          alt="screen shot of National Parks project"
+          className="screenShot"
+          src={nps}
+        />
+
+        <h2>About This Project</h2>
+        <p>
+          This is a project I designed and created using the National Park
+          Service API. In this project I use fetch to retreive data from the NPS
+          API and display it using React. You can view active webcams as well as
+          indiviual park info such as entrance fees and park location. Have fun
+          exploring America's National Parks!
+        </p>
+        <div className="icons">
+          <a href="https://github.com/Nmelms/national-parks">
+            <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
+          </a>
+          <a href="https://nmelmsnps.netlify.app">
+            <FontAwesomeIcon
+              title="live project link"
+              size="2x"
+              icon={faArrowUpRightFromSquare}
+            />
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -93,7 +93,7 @@ export default function HomeScreen() {
           setPages={setPages}
         />
       )}
-      {pages.includes("national parks") && (
+      {pages.includes("National Parks") && (
         <NpsProject
           pages={pages}
           setPages={setPages}
@@ -101,7 +101,7 @@ export default function HomeScreen() {
           selected={selected}
         />
       )}
-      {pages.includes("invoice app") && (
+      {pages.includes("Invoice App") && (
         <InvoiceProject
           pages={pages}
           setPages={setPages}
@@ -109,7 +109,7 @@ export default function HomeScreen() {
           selected={selected}
         />
       )}
-      {pages.includes("planet facts") && (
+      {pages.includes("Planet Facts") && (
         <PlanetProject
           pages={pages}
           setPages={setPages}

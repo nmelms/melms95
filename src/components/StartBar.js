@@ -50,17 +50,17 @@ export default function StartBar({
       projectRef.current.classList.contains("top")
         ? (projectRef.current.style.display = "none")
         : (projectRef.current.style.display = "flex");
-    } else if (page === "planet facts") {
+    } else if (page === "Planet Facts") {
       planetRef.current.style.display === "block" &&
       planetRef.current.classList.contains("top")
         ? (planetRef.current.style.display = "none")
         : (planetRef.current.style.display = "block");
-    } else if (page === "national parks") {
+    } else if (page === "National Parks") {
       npsRef.current.style.display === "block" &&
       npsRef.current.classList.contains("top")
         ? (npsRef.current.style.display = "none")
         : (npsRef.current.style.display = "block");
-    } else if (page === "invoice app") {
+    } else if (page === "Invoice App") {
       invoiceRef.current.style.display === "block" &&
       invoiceRef.current.classList.contains("top")
         ? (invoiceRef.current.style.display = "none")
@@ -72,7 +72,11 @@ export default function StartBar({
     <div className="startBar">
       <button ref={btnRef} className="startBtn" onClick={handleClick}>
         <div className="btnContentWrapper">
-          <img className="startBtnIcon" src={windowsIcon} />
+          <img
+            style={{ paddingRight: "0", height: "25px", width: "23px" }}
+            className="startBtnIcon"
+            src={windowsIcon}
+          />
           Start
         </div>
       </button>
