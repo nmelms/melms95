@@ -19,6 +19,9 @@
 ::-webkit-scrollbar-track {
   background: lightgray;
 }
+p {
+  padding: 0;
+}
 
 html {
   height: 100%;
@@ -86,6 +89,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: black;
 }
 .btnContentWrapper {
   height: 80%;
@@ -240,15 +244,15 @@ a {
 .Bio {
   touch-action: none;
   overflow-y: none;
-  overflow-x: hidden;
+  overflow-x: none;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: var(--primaryBg);
   height: fit-content;
   max-height: 400px;
-  max-width: 50vw;
-  min-width: 300px;
+  width: 40vw;
+  min-width: 250px;
   position: absolute;
   border: 2px outset black;
   border-top-color: whitesmoke;
@@ -296,17 +300,20 @@ a {
   width: 18px;
   background-color: var(--primaryBg);
   border-radius: 0;
+  color: black;
 }
 .bioMain {
+  width: 100%;
+  min-width: 250px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .bioMain * {
   margin: 0 auto;
-  padding: 0 15% 0 15%;
+  padding: 0 1rem 0 1rem;
 }
 .bioMain h1 {
-  margin: 1rem 0rem 1rem 0rem;
+  padding-bottom: 0.5rem;
   font-size: 30px;
 }
 .selfie {
@@ -380,7 +387,8 @@ a {
   background-color: var(--primaryBg);
   height: fit-content;
   min-width: 300px;
-  height: fit-content;
+  height: 400px;
+
   max-height: 100vh;
   width: 30vw;
 }
@@ -401,7 +409,10 @@ a {
 }
 
 .techText {
+  padding: 0;
   max-width: 100%;
+  width: 100%;
+  min-width: 250px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -435,7 +446,6 @@ a {
   overflow-y: auto;
   height: 90%;
   max-width: 1200px;
-  height: 100%;
   padding: 1rem;
   padding-bottom: 0;
   margin: 0 auto;
