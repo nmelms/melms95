@@ -70,7 +70,7 @@ a {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  height: 5vh;
+  height: 50px;
   position: absolute;
   bottom: 0;
   z-index: 50;
@@ -94,13 +94,37 @@ a {
   justify-content: center;
   align-items: center;
 }
+.notPressed {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: start;
+  align-items: center;
+  padding: 0.25rem;
+  border: 2px outset black;
+  border-top-color: white;
+  border-left-color: white;
+  width: 150px;
+  margin: 0.25rem;
+}
+.notPressed img {
+  padding-right: 0.5rem;
+}
 
 .pressed {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: start;
+  align-items: center;
+  padding: 0.25rem;
+  background-color: lightgray;
   margin: 0.25rem;
   border: 2px inset;
   width: 150px;
   border-bottom-color: white;
   border-right-color: white;
+}
+.pressed img {
+  padding-right: 0.5rem;
 }
 .pressed .btnContentWrapper {
   border: 2px dotted;
@@ -218,7 +242,7 @@ a {
   background-color: var(--primaryBg);
   height: fit-content;
   max-height: 400px;
-  width: 50vw;
+  max-width: 50vw;
   min-width: 300px;
   position: absolute;
   border: 2px outset black;
@@ -390,11 +414,7 @@ a {
   flex-grow: 3;
   margin: 0.25rem;
 }
-.notPressed {
-  border: 2px outset black;
-  width: 150px;
-  margin: 0.25rem;
-}
+
 .selected {
   width: 1fr;
   min-width: 50px;

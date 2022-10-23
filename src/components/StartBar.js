@@ -2,6 +2,8 @@ import React, { useState, useRef, createRef, useContext } from "react";
 import GlobalContext from "../GlobalContext";
 import Time from "./Time";
 import windowsIcon from "../assets/windowsIcon.png";
+import file from "../assets/file.png";
+import folder from "../assets/folder2.png";
 
 export default function StartBar({
   setShowMenu,
@@ -75,7 +77,6 @@ export default function StartBar({
         </div>
       </button>
       <div className="openWindows">
-        {console.log(selected)}
         {pages.map((page, index) => {
           return (
             <div
@@ -84,6 +85,10 @@ export default function StartBar({
               onClick={() => handleIconClick(allItemRefs.current[index], page)}
               className={selected === page ? "pressed" : "notPressed"}
             >
+              <img
+                style={{ height: "100%" }}
+                src={page === "Bio" || page === "Projects" ? folder : file}
+              />
               {page}
             </div>
           );
