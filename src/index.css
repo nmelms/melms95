@@ -243,6 +243,8 @@ a {
   width: 70%;
 }
 .Bio {
+  padding: 0;
+  margin: 0;
   touch-action: none;
   overflow-y: auto;
   overflow-x: hidden;
@@ -251,9 +253,9 @@ a {
   flex-direction: column;
   background-color: var(--primaryBg);
   height: auto;
-  max-height: 600px;
+  max-height: 500px;
   width: auto;
-  max-width: 400px;
+  max-width: 300px;
   position: absolute;
   border: 2px outset black;
   border-top-color: whitesmoke;
@@ -304,14 +306,14 @@ a {
   color: black;
 }
 .bioMain {
-  max-width: 600px;
+  text-align: center;
+  max-width: 100%;
   min-width: 250px;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.bioMain * {
-  margin: 0 auto;
-  padding: 0 1rem 0 1rem;
+.bioMain p {
+  padding: 1rem;
 }
 .bioMain h1 {
   padding-bottom: 0.5rem;
@@ -405,9 +407,11 @@ a {
   justify-content: space-between;
 }
 .fullScreen {
+  max-width: none !important;
+  max-height: none !important ;
   font-size: 1.35rem;
-  height: 100vh;
-  width: 100vw;
+  height: 100vh !important;
+  width: 100vw !important;
 }
 
 .techText {
