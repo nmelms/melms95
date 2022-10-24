@@ -17,8 +17,8 @@ export default function Projects({ pages, setPages }) {
     setSelected,
   } = useContext(GlobalContext);
   const [windowPosition, setWindowPosition] = useState({
-    x: "50px",
-    y: "50px",
+    x: 0,
+    y: 0,
   });
   const [fullScreen, setFullScreen] = useState("");
 
