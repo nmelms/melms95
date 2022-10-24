@@ -16,11 +16,13 @@ export default function Projects({ pages, setPages }) {
     selected,
     setSelected,
   } = useContext(GlobalContext);
-  const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+  const [windowPosition, setWindowPosition] = useState({
+    x: "50px",
+    y: "50px",
+  });
   const [fullScreen, setFullScreen] = useState("");
 
   const handleClick = () => {
-    console.log("lcldafkdsak");
     setSelected("Projects");
   };
 
@@ -52,6 +54,7 @@ export default function Projects({ pages, setPages }) {
   const handleCloseClick = (event) => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Projects");
+    console.log(filtered);
     setPages(filtered);
   };
 

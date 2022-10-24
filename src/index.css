@@ -78,6 +78,7 @@ a {
   z-index: 50;
 }
 .startBtn {
+  width: 100px !important;
   background-color: var(--primaryBg);
   border: 2px black outset;
   border-top-color: white;
@@ -165,7 +166,7 @@ a {
   height: fit-content;
   width: fit-content;
   padding-right: 0.25rem;
-  bottom: 5vh;
+  bottom: 50px;
   background-color: var(--primaryBg);
   border: 2px outset black;
   border-left-color: whitesmoke;
@@ -249,8 +250,8 @@ a {
   align-items: center;
   flex-direction: column;
   background-color: var(--primaryBg);
-  height: fit-content;
-  max-height: 400px;
+  height: auto;
+  max-height: 100vh;
   width: 40vw;
   min-width: 250px;
   position: absolute;
@@ -303,7 +304,7 @@ a {
   color: black;
 }
 .bioMain {
-  width: 100%;
+  max-width: 600px;
   min-width: 250px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -349,6 +350,7 @@ a {
   height: 400px;
   width: 40vw;
   min-width: 250px;
+  max-width: 400px;
   position: absolute;
   border: 2px outset black;
   border-top-color: whitesmoke;

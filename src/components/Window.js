@@ -11,7 +11,7 @@ import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
 import { useDrag } from "@use-gesture/react";
 
-export default function Window({ pages, setPages }) {
+export default function Window({ pages, setPages, display }) {
   const nodeRef = useRef();
   const { bioRef, selected, setSelected } = useContext(GlobalContext);
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
@@ -55,6 +55,7 @@ export default function Window({ pages, setPages }) {
         fullScreen === "fullScreen"
           ? { left: "0", top: "0" }
           : {
+              display: display,
               left: windowPosition.x,
               top: windowPosition.y,
             }
@@ -120,7 +121,7 @@ export default function Window({ pages, setPages }) {
           <img alt="css " className="techLogo" src={cssSVG} />
         </div>
         <div className="techText">
-          <p>React/Javascript/Jest/fireBase/HTML/CSS</p>
+          <p>React/Javascript/Jest/Firebase/HTML/CSS</p>
         </div>
       </div>
     </div>

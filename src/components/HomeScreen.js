@@ -74,16 +74,17 @@ export default function HomeScreen() {
           imgSrc={folder}
         />
       </div>
-      {pages.includes("Bio") && (
-        <Window
-          selected={selected}
-          handleClick={() => handleClick("Bio")}
-          pages={pages}
-          setPages={setPages}
-          activePages={activePages}
-          setActivePages={setActivePages}
-        />
-      )}
+
+      <Window
+        display={pages.includes("Bio") ? "flex" : "none"}
+        selected={selected}
+        handleClick={() => handleClick("Bio")}
+        pages={pages}
+        setPages={setPages}
+        activePages={activePages}
+        setActivePages={setActivePages}
+      />
+
       {pages.includes("Projects") && (
         <Projects
           selected={selected}
