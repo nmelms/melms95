@@ -18,9 +18,6 @@ export default function Window({ pages, setPages, display }) {
   const [fullScreen, setFullScreen] = useState("");
 
   const bindWindowPos = useDrag((params) => {
-    console.log(params.offset[0]);
-    console.log(params.offset[1]);
-
     setWindowPosition({
       x: params.offset[0],
       y: params.offset[1],

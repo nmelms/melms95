@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import GlobalContext from "../GlobalContext";
 import nps from "../assets/npsScreenShot.png";
 import file from "../assets/file.png";
@@ -12,8 +12,14 @@ export default function NpsProject() {
     useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+  useEffect(() => {}, []);
 
   const bindWindowPos = useDrag((params) => {
+    if (params.first) {
+      console.log("first");
+      params.offset[0] = windowPosition.x;
+      params.offset[1] = windowPosition.y;
+    }
     setWindowPosition({
       x: params.offset[0],
       y: params.offset[1],

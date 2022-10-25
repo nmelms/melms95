@@ -117,6 +117,7 @@ export default function StartBar({
         {pages.map((page, index) => {
           return (
             <div
+              key={index}
               id={page}
               ref={allItemRefs.current[index]}
               onClick={() => handleIconClick(allItemRefs.current[index], page)}
