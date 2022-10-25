@@ -8,7 +8,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useDrag } from "@use-gesture/react";
 
 export default function NpsProject() {
-  const { planetRef, selected, setSelected, pages, setPages, npsRef } =
+  const { planetRef, selected, setSelected, pages, setPages, npsRef, display } =
     useContext(GlobalContext);
   const [fullScreen, setFullScreen] = useState("");
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
@@ -27,11 +27,13 @@ export default function NpsProject() {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "National Parks");
     setPages(filtered);
+    if (npsRef.current.classList.contains("fullScreen")) {
+      npsRef.current.classList.remove("fullScreen");
+      npsRef.current.style.display = "none";
+    }
   };
   const handleFullScreenClick = () => {
-    fullScreen === "fullScreen"
-      ? setFullScreen("")
-      : setFullScreen("fullScreen");
+    npsRef.current.classList.toggle("fullScreen");
   };
   const handleMinimizeClick = (e) => {
     e.stopPropagation();
@@ -45,11 +47,11 @@ export default function NpsProject() {
   return (
     <div
       onPointerDown={handleClick}
-      style={
-        fullScreen === "fullScreen"
-          ? { left: "0", top: "0" }
-          : { left: windowPosition.x, top: windowPosition.y }
-      }
+      style={{
+        display: display,
+        left: windowPosition.x,
+        top: windowPosition.y,
+      }}
       ref={npsRef}
       className={
         selected === "National Parks"

@@ -5,7 +5,7 @@ import file from "../assets/file.png";
 import Icon from "./Icon";
 import { useDrag } from "@use-gesture/react";
 
-export default function Projects({ pages, setPages }) {
+export default function Projects({ pages, setPages, display }) {
   const {
     projectRef,
     npsRef,
@@ -43,26 +43,28 @@ export default function Projects({ pages, setPages }) {
       setSelected(name);
     }
 
-    if (name === "Invoice App") {
-      invoiceRef.current.style.display = "block";
-    } else if (name === "National Parks") {
-      npsRef.current.style.display = "block";
-    } else if (name === "Planet Facts") {
-      planetRef.current.style.display = "block";
-    }
+    // if (name === "Invoice App") {
+    //   invoiceRef.current.style.display = "block";
+    // } else if (name === "National Parks") {
+    //   npsRef.current.style.display = "block";
+    // } else if (name === "Planet Facts") {
+    //   planetRef.current.style.display = "block";
+    // }
   };
-  const handleCloseClick = (event) => {
+  const handleCloseClick = (e) => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Projects");
-    console.log(filtered);
     setPages(filtered);
+
+    if (projectRef.current.classList.contains("fullScreen")) {
+      projectRef.current.classList.remove("fullScreen");
+      projectRef.current.style.display = "none";
+    }
   };
 
   const handleFullScreenClick = (e) => {
     e.stopPropagation();
-    fullScreen === "fullScreen"
-      ? setFullScreen("")
-      : setFullScreen("fullScreen");
+    projectRef.current.classList.toggle("fullScreen");
   };
 
   const handleMinimizeClick = (e) => {
@@ -77,9 +79,10 @@ export default function Projects({ pages, setPages }) {
     <div
       onPointerDown={handleClick}
       style={
-        fullScreen === "fullScreen"
-          ? { left: "0", top: "0" }
-          : { left: windowPosition.x, top: windowPosition.y }
+        { display: display, left: windowPosition.x, top: windowPosition.y }
+        // fullScreen === "fullScreen"
+        //   ? { left: "0", top: "0" }
+        //   : { left: windowPosition.x, top: windowPosition.y }
       }
       data-testid="projectsWindow"
       ref={projectRef}

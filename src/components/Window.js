@@ -18,6 +18,9 @@ export default function Window({ pages, setPages, display }) {
   const [fullScreen, setFullScreen] = useState("");
 
   const bindWindowPos = useDrag((params) => {
+    console.log(params.offset[0]);
+    console.log(params.offset[1]);
+
     setWindowPosition({
       x: params.offset[0],
       y: params.offset[1],
@@ -28,15 +31,19 @@ export default function Window({ pages, setPages, display }) {
     setSelected("Bio");
   };
 
-  const handleCloseClick = (event) => {
+  const handleCloseClick = (e) => {
     const newArr = pages;
     const filtered = newArr.filter((item) => item !== "Bio");
     setPages(filtered);
+
+    if (bioRef.current.classList.contains("fullScreen")) {
+      bioRef.current.classList.remove("fullScreen");
+      bioRef.current.style.display = "none";
+    }
   };
+
   const handleFullScreenClick = () => {
-    fullScreen === "fullScreen"
-      ? setFullScreen("")
-      : setFullScreen("fullScreen");
+    bioRef.current.classList.toggle("fullScreen");
   };
 
   const handleMinimizeClick = (e) => {
@@ -51,15 +58,11 @@ export default function Window({ pages, setPages, display }) {
   return (
     <div
       onPointerDown={handleClick}
-      style={
-        fullScreen === "fullScreen"
-          ? { left: "0", top: "0" }
-          : {
-              display: display,
-              left: windowPosition.x,
-              top: windowPosition.y,
-            }
-      }
+      style={{
+        display: display,
+        left: windowPosition.x,
+        top: windowPosition.y,
+      }}
       ref={bioRef}
       data-testid="Window"
       className={selected === "Bio" ? `Bio top  ${fullScreen}` : "Bio"}

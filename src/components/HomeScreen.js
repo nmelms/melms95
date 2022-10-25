@@ -42,17 +42,17 @@ export default function HomeScreen() {
     if (!pages.includes(name)) {
       setPages([...pages, name]);
     }
-    if (name === "Bio") {
-      bioRef.current.style.display === "flex" &&
-      bioRef.current.classList.contains("top")
-        ? (bioRef.current.style.display = "none")
-        : (bioRef.current.style.display = "flex");
-    } else if (name === "Projects") {
-      projectRef.current.style.display === "flex" &&
-      projectRef.current.classList.contains("top")
-        ? (projectRef.current.style.display = "none")
-        : (projectRef.current.style.display = "flex");
-    }
+    // if (name === "Bio") {
+    //   bioRef.current.style.display === "flex" &&
+    //   bioRef.current.classList.contains("top")
+    //     ? (bioRef.current.style.display = "none")
+    //     : (bioRef.current.style.display = "flex");
+    // } else if (name === "Projects") {
+    //   projectRef.current.style.display === "flex" &&
+    //   projectRef.current.classList.contains("top")
+    //     ? (projectRef.current.style.display = "none")
+    //     : (projectRef.current.style.display = "flex");
+    // }
   };
 
   return (
@@ -75,18 +75,21 @@ export default function HomeScreen() {
         />
       </div>
 
-      <Window
-        display={pages.includes("Bio") ? "flex" : "none"}
-        selected={selected}
-        handleClick={() => handleClick("Bio")}
-        pages={pages}
-        setPages={setPages}
-        activePages={activePages}
-        setActivePages={setActivePages}
-      />
+      {pages.includes("Bio") && (
+        <Window
+          display={pages.includes("Bio") ? "flex" : "none"}
+          selected={selected}
+          handleClick={() => handleClick("Bio")}
+          pages={pages}
+          setPages={setPages}
+          activePages={activePages}
+          setActivePages={setActivePages}
+        />
+      )}
 
       {pages.includes("Projects") && (
         <Projects
+          display={pages.includes("Projects") ? "flex" : "none"}
           selected={selected}
           handleClick={() => handleClick("Projects")}
           setSelected={setSelected}
@@ -96,6 +99,7 @@ export default function HomeScreen() {
       )}
       {pages.includes("National Parks") && (
         <NpsProject
+          display={pages.includes("National Parks") ? "block" : "none"}
           pages={pages}
           setPages={setPages}
           setSelected={setSelected}

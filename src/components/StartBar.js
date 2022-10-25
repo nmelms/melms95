@@ -38,34 +38,67 @@ export default function StartBar({
   };
 
   const handleIconClick = (ref, page) => {
-    selected === page && setSelected("");
-    selected !== page && setSelected(page);
+    selected === page ? setSelected("") : setSelected(page);
     if (page === "Bio") {
-      bioRef.current.style.display === "flex" &&
-      bioRef.current.classList.contains("top")
-        ? (bioRef.current.style.display = "none")
-        : (bioRef.current.style.display = "flex");
+      bioRef.current.style.display =
+        bioRef.current.style.display === "flex" &&
+        bioRef.current.classList.contains("top")
+          ? "none"
+          : "flex";
     } else if (page === "Projects") {
-      projectRef.current.style.display === "flex" &&
-      projectRef.current.classList.contains("top")
-        ? (projectRef.current.style.display = "none")
-        : (projectRef.current.style.display = "flex");
+      projectRef.current.style.display =
+        projectRef.current.style.display === "flex" &&
+        projectRef.current.classList.contains("top")
+          ? "none"
+          : "flex";
     } else if (page === "Planet Facts") {
-      planetRef.current.style.display === "block" &&
-      planetRef.current.classList.contains("top")
-        ? (planetRef.current.style.display = "none")
-        : (planetRef.current.style.display = "block");
+      planetRef.current.style.display =
+        planetRef.current.style.display === "block" &&
+        planetRef.current.classList.contains("top")
+          ? "none"
+          : "block";
     } else if (page === "National Parks") {
-      npsRef.current.style.display === "block" &&
-      npsRef.current.classList.contains("top")
-        ? (npsRef.current.style.display = "none")
-        : (npsRef.current.style.display = "block");
+      npsRef.current.style.display =
+        npsRef.current.style.display === "block" &&
+        npsRef.current.classList.contains("top")
+          ? "none"
+          : "block";
     } else if (page === "Invoice App") {
-      invoiceRef.current.style.display === "block" &&
-      invoiceRef.current.classList.contains("top")
-        ? (invoiceRef.current.style.display = "none")
-        : (invoiceRef.current.style.display = "block");
+      invoiceRef.current.style.display =
+        invoiceRef.current.style.display === "block" &&
+        invoiceRef.current.classList.contains("top")
+          ? "none"
+          : "block";
     }
+
+    // selected === page && setSelected("");
+    // selected !== page && setSelected(page);
+    // if (page === "Bio") {
+    //   bioRef.current.style.display === "flex" &&
+    //   bioRef.current.classList.contains("top")
+    //     ? (bioRef.current.style.display = "none")
+    //     : (bioRef.current.style.display = "flex");
+    // } else if (page === "Projects") {
+    //   projectRef.current.style.display === "flex" &&
+    //   projectRef.current.classList.contains("top")
+    //     ? (projectRef.current.style.display = "none")
+    //     : (projectRef.current.style.display = "flex");
+    // } else if (page === "Planet Facts") {
+    //   planetRef.current.style.display === "block" &&
+    //   planetRef.current.classList.contains("top")
+    //     ? (planetRef.current.style.display = "none")
+    //     : (planetRef.current.style.display = "block");
+    // } else if (page === "National Parks") {
+    //   npsRef.current.style.display === "block" &&
+    //   npsRef.current.classList.contains("top")
+    //     ? (npsRef.current.style.display = "none")
+    //     : (npsRef.current.style.display = "block");
+    // } else if (page === "Invoice App") {
+    //   invoiceRef.current.style.display === "block" &&
+    //   invoiceRef.current.classList.contains("top")
+    //     ? (invoiceRef.current.style.display = "none")
+    //     : (invoiceRef.current.style.display = "block");
+    // }
   };
 
   return (
