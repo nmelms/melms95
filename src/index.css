@@ -6,6 +6,7 @@
   --app-height: 100vh;
 }
 * {
+  box-sizing: border-box;
   scrollbar-color: var(--primaryBg) lightgray;
 }
 ::-webkit-scrollbar {
@@ -467,4 +468,28 @@ a {
   .npsProject {
     left: 5%;
   }
+}
+
+/* minesweeper styles */
+
+.gameBoard {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  height: 500px;
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tile {
+  height: 50px;
+  width: 50px;
+  border: 1px solid white;
+  background-color: black;
+}
+.bomb {
+  height: 50px;
+  width: 50px;
+  border: 1px solid white;
+  background-color: blue;
 }

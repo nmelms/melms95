@@ -11,6 +11,7 @@ import Projects from "./Projects";
 import NpsProject from "./NpsProject";
 import InvoiceProject from "./InvoiceProject";
 import PlanetProject from "./PlanetProject";
+import MineSweeper from "./minesweeper/MineSweeper";
 
 export default function HomeScreen() {
   const {
@@ -76,7 +77,7 @@ export default function HomeScreen() {
       </div>
 
       {pages.includes("Bio") && (
-        <Window
+        <MineSweeper
           display={pages.includes("Bio") ? "flex" : "none"}
           selected={selected}
           handleClick={() => handleClick("Bio")}
