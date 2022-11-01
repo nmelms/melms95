@@ -493,3 +493,7 @@ a {
   border: 1px solid white;
   background-color: blue;
 }
+.visible {
+  background-color: white;
+  border: 2px solid black;
+}

@@ -1,26 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import Tile from "./Tile";
 import Bomb from "./Bomb";
 import { getByTitle } from "@testing-library/dom";
 
 export default function MineSweeper() {
+  const tileRef = useRef([]);
   const row = 10;
   const col = 10;
 
-  const numOfBombs = 40;
+  const numOfBombs = 10;
   const gameBoard = [];
 
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < col; j++) {
-      gameBoard.push({ value: "", x: i, y: j });
+      gameBoard.push({ value: "", x: i, y: j, hidden: true });
     }
   }
-
-  const handleTileClick = (tile) => {
-    console.log("x: " + tile.x);
-    console.log("y: " + tile.y);
-    console.log("value: " + tile.value);
-  };
 
   const placeBombs = () => {
     const bombsArr = [];
@@ -32,6 +27,70 @@ export default function MineSweeper() {
     }
     for (let i = 0; i < bombsArr.length; i++) {
       gameBoard[bombsArr[i]].value = "x";
+    }
+  };
+
+  const handleTileClick = (tile, i) => {
+    console.log(tile.x, tile.y);
+    tileRef.current[i].classList.add("visible");
+    tile.hidden = false;
+    tile.value === "x" && console.log("gameOver");
+    tile.value === "" && check(tile, i);
+    tile.value !== "" && tile.value !== "x" && console.log("hello");
+  };
+
+  const check = (tile, i) => {
+    // //check top
+    if (tile.x !== 0 && gameBoard[i - 10].hidden === true) {
+      console.log("check");
+      tileRef.current[i - 10].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i - 10], i - 10);
+    }
+    //check top right
+    if (tile.y !== 9 && tile.x !== 0 && gameBoard[i - 9].hidden === true) {
+      console.log(gameBoard[i - 9]);
+      tileRef.current[i - 9].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i - 9], i - 9);
+    }
+    // check right
+    if (tile.y !== 9 && gameBoard[i + 1].hidden === true) {
+      console.log(gameBoard[i + 1]);
+      tileRef.current[i + 1].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i + 1], i + 1);
+    }
+    //check bottom right
+    if (tile.x !== 9 && tile.y !== 9 && gameBoard[i + 11].hidden === true) {
+      tileRef.current[i + 11].classList.add("visible");
+      console.log(tile.x, tile.y);
+      tile.hidden = false;
+      handleTileClick(gameBoard[i + 11], i + 11);
+    }
+    //check bottom
+    if (tile.x !== 9 && gameBoard[i + 10].hidden === true) {
+      tileRef.current[i + 10].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i + 10], i + 10);
+    }
+    //check bottom left
+    if (tile.x !== 9 && tile.y !== 0 && gameBoard[i + 9].hidden === true) {
+      tileRef.current[i + 9].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i + 9], i + 9);
+    }
+    //check left
+    if (tile.y !== 0 && gameBoard[i - 1].hidden === true) {
+      tileRef.current[i - 1].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i - 1], i - 1);
+    }
+    //check top left
+    if (tile.y !== 0 && tile.x !== 0 && gameBoard[i - 11].hidden === true) {
+      tileRef.current[i - 11].classList.add("visible");
+      tile.hidden = false;
+      handleTileClick(gameBoard[i - 11], i - 11);
     }
   };
 
@@ -105,12 +164,13 @@ export default function MineSweeper() {
 
   return (
     <div className="gameBoard">
-      {gameBoard.map((tile) => {
+      {gameBoard.map((tile, i) => {
         return (
           <div
-            onClick={() => handleTileClick(tile)}
+            ref={(ref) => (tileRef.current[i] = ref)}
+            onClick={() => handleTileClick(tile, i)}
             className="tile"
-            style={{ color: "white" }}
+            style={{ color: tile.hidden ? "black" : "white" }}
           >
             {tile.value}
           </div>
