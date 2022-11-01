@@ -473,7 +473,7 @@ a {
 /* minesweeper styles */
 
 .gameBoard {
-  position: absolute;
+  position: relative;
   top: 25%;
   left: 25%;
   height: 500px;
@@ -496,4 +496,15 @@ a {
 .visible {
   background-color: white;
   border: 2px solid black;
+}
+.gameover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  padding-top: 30%;
+  align-items: center;
+  text-align: center;
 }

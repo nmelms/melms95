@@ -1,21 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Tile from "./Tile";
 import Bomb from "./Bomb";
 import { getByTitle } from "@testing-library/dom";
 
 export default function MineSweeper() {
+  const [newGame, setNewGame] = useState(false);
   const tileRef = useRef([]);
+  const gameOverRef = useRef();
+  let gameOver = false;
   const row = 10;
   const col = 10;
 
   const numOfBombs = 10;
-  const gameBoard = [];
+  let gameBoard = [];
 
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < col; j++) {
       gameBoard.push({ value: "", x: i, y: j, hidden: true });
     }
   }
+  const resetClick = () => {
+    setNewGame(!newGame);
+    gameBoard.map((tile, i) => {
+      tileRef.current[i].classList.remove("visible");
+    });
+    gameOverRef.current.style.display = "none";
+
+    placeBombs();
+    setNumbers();
+  };
 
   const placeBombs = () => {
     const bombsArr = [];
@@ -31,12 +44,15 @@ export default function MineSweeper() {
   };
 
   const handleTileClick = (tile, i) => {
-    console.log(tile.x, tile.y);
     tileRef.current[i].classList.add("visible");
     tile.hidden = false;
-    tile.value === "x" && console.log("gameOver");
+    tile.value === "x" && bombClick();
     tile.value === "" && check(tile, i);
     tile.value !== "" && tile.value !== "x" && console.log("hello");
+  };
+
+  const bombClick = () => {
+    gameOverRef.current.style.display = "block";
   };
 
   const check = (tile, i) => {
@@ -160,22 +176,26 @@ export default function MineSweeper() {
   placeBombs();
   setNumbers();
 
-  console.log(gameBoard);
-
   return (
-    <div className="gameBoard">
-      {gameBoard.map((tile, i) => {
-        return (
-          <div
-            ref={(ref) => (tileRef.current[i] = ref)}
-            onClick={() => handleTileClick(tile, i)}
-            className="tile"
-            style={{ color: tile.hidden ? "black" : "white" }}
-          >
-            {tile.value}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className="gameBoard">
+        <div ref={gameOverRef} style={{ display: "none" }} className="gameover">
+          <h1>GameOver</h1>
+          <button onClick={() => resetClick()}>Reset</button>
+        </div>
+        {gameBoard.map((tile, i) => {
+          return (
+            <div
+              ref={(ref) => (tileRef.current[i] = ref)}
+              onClick={() => handleTileClick(tile, i)}
+              className="tile"
+              style={{ color: tile.hidden ? "black" : "white" }}
+            >
+              {tile.value}
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
