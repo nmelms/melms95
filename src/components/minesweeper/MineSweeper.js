@@ -16,16 +16,16 @@ export default function MineSweeper() {
 
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < col; j++) {
-      gameBoard.push({ value: "", x: i, y: j, hidden: true });
+      gameBoard.push({ value: "", x: i, y: j, hidden: true, flag: false });
     }
   }
   const resetClick = () => {
     setNewGame(!newGame);
     gameBoard.map((tile, i) => {
       tileRef.current[i].classList.remove("visible");
+      tileRef.current[i].classList.remove("flag");
     });
     gameOverRef.current.style.display = "none";
-
     placeBombs();
     setNumbers();
   };
@@ -44,6 +44,7 @@ export default function MineSweeper() {
   };
 
   const handleTileClick = (tile, i) => {
+    if (tile.flag === true) return;
     tileRef.current[i].classList.add("visible");
     tile.hidden = false;
     tile.value === "x" && bombClick();
@@ -53,6 +54,16 @@ export default function MineSweeper() {
 
   const bombClick = () => {
     gameOverRef.current.style.display = "block";
+  };
+
+  const handleRightClick = (e, tile, i) => {
+    e.preventDefault();
+    console.log(tile);
+    if (tile.hidden === false) return;
+    tile.flag = !tile.flag;
+    tile.flag === true
+      ? tileRef.current[i].classList.add("flag")
+      : tileRef.current[i].classList.remove("flag");
   };
 
   const check = (tile, i) => {
@@ -187,9 +198,10 @@ export default function MineSweeper() {
           return (
             <div
               ref={(ref) => (tileRef.current[i] = ref)}
+              onContextMenu={(e) => handleRightClick(e, tile, i)}
               onClick={() => handleTileClick(tile, i)}
               className="tile"
-              style={{ color: tile.hidden ? "black" : "white" }}
+              // style={{ color: tile.hidden ? "black" : "white" }}
             >
               {tile.value}
             </div>
