@@ -8,17 +8,17 @@ export default function MineSweeper() {
   const [newGame, setNewGame] = useState(false);
   const [gameBoard, setGameBoard] = useState([]);
   const [numOfFlags, setNumOfFlags] = useState(0);
+  const [numOfBombs, setNumOfBombs] = useState(10);
   const tileRef = useRef([]);
   const gameOverRef = useRef();
   let gameOver = false;
   const row = 10;
   const col = 10;
 
-  const numOfBombs = 10;
-
   const initBoard = () => {
     let newGameBoard = [];
     let bombsArr = [];
+    setNumOfFlags(0);
     const setNumbers = () => {
       newGameBoard.map((tile, index) => {
         let bombCount = 0;
@@ -126,6 +126,11 @@ export default function MineSweeper() {
 
   const bombClick = () => {
     gameOverRef.current.style.display = "block";
+    gameBoard.map((tile, i) => {
+      if (tile.value === "x") {
+        tileRef.current[i].classList.add("visible");
+      }
+    });
   };
 
   const handleRightClick = (e, tile, i) => {
@@ -198,8 +203,8 @@ export default function MineSweeper() {
 
   return (
     <>
-      <ScoreBoard numOfBombs={numOfBombs} numOfFlags={numOfFlags} />
       <div className="gameBoard">
+        <ScoreBoard numOfBombs={numOfBombs} numOfFlags={numOfFlags} />
         <div ref={gameOverRef} style={{ display: "none" }} className="gameover">
           <h1>GameOver</h1>
           <button onClick={() => resetClick()}>Reset</button>
