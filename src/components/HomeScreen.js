@@ -6,6 +6,7 @@ import Icon from "./Icon";
 import recycle from "../assets/recycle.png";
 import mycomputer from "../assets/mycomputer.png";
 import folder from "../assets/folder2.png";
+import mine from "../assets/mine.png";
 import Window from "./Window";
 import Projects from "./Projects";
 import NpsProject from "./NpsProject";
@@ -74,10 +75,16 @@ export default function HomeScreen() {
           alt="projects"
           imgSrc={folder}
         />
+        <Icon
+          handleClick={(e) => handleClick(e, "Minesweeper")}
+          name="Minesweeper"
+          alt="Minesweeper"
+          imgSrc={mine}
+        />
       </div>
 
       {pages.includes("Bio") && (
-        <MineSweeper
+        <Window
           display={pages.includes("Bio") ? "flex" : "none"}
           selected={selected}
           handleClick={() => handleClick("Bio")}
@@ -121,6 +128,17 @@ export default function HomeScreen() {
           setPages={setPages}
           setSelected={setSelected}
           selected={selected}
+        />
+      )}
+      {pages.includes("Minesweeper") && (
+        <MineSweeper
+          display={pages.includes("Minesweeper") ? "flex" : "none"}
+          selected={selected}
+          handleClick={() => handleClick("MineSweeper")}
+          pages={pages}
+          setPages={setPages}
+          activePages={activePages}
+          setActivePages={setActivePages}
         />
       )}
     </div>
