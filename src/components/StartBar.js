@@ -19,6 +19,7 @@ export default function StartBar({
     bioRef,
     projectRef,
     invoiceRef,
+    mineRef,
     npsRef,
     visiblePages,
     setVisiblePages,
@@ -69,6 +70,12 @@ export default function StartBar({
         invoiceRef.current.classList.contains("top")
           ? "none"
           : "block";
+    } else if (page === "Minesweeper") {
+      mineRef.current.style.display =
+        mineRef.current.style.display === "flex" &&
+        mineRef.current.classList.contains("top")
+          ? "none"
+          : "flex";
     }
 
     // selected === page && setSelected("");

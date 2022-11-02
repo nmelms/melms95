@@ -24,6 +24,7 @@ export default function HomeScreen() {
     setSelected,
     dragging,
     bioRef,
+    mineRef,
     projectRef,
   } = useContext(GlobalContext);
   const [showMenu, setShowMenu] = useState(false);

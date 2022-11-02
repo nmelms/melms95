@@ -7,6 +7,7 @@ export function GlobalProvider({ children }) {
   const bioRef = useRef();
   const projectRef = useRef();
   const invoiceRef = useRef();
+  const mineRef = useRef();
   const npsRef = useRef();
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
@@ -37,6 +38,7 @@ export function GlobalProvider({ children }) {
         bioRef,
         projectRef,
         invoiceRef,
+        mineRef,
         npsRef,
         pages,
         setPages,

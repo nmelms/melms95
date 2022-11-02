@@ -1,11 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import GlobalContext from "../../GlobalContext";
 import Tile from "./Tile";
 import Bomb from "./Bomb";
 import { getByTitle } from "@testing-library/dom";
 import ScoreBoard from "./ScoreBoard";
 
 export default function MineSweeper() {
+  const { mineRef, selected, setSelected } = useContext(GlobalContext);
   const [newGame, setNewGame] = useState(false);
+  const [fullScreen, setFullScreen] = useState("");
   const [gameBoard, setGameBoard] = useState([]);
   const [numOfFlags, setNumOfFlags] = useState(0);
   const [numOfBombs, setNumOfBombs] = useState(10);
@@ -14,6 +17,7 @@ export default function MineSweeper() {
   let gameOver = false;
   const row = 10;
   const col = 10;
+  console.log(selected);
 
   const initBoard = () => {
     let newGameBoard = [];
@@ -196,6 +200,10 @@ export default function MineSweeper() {
       handleTileClick(gameBoard[i - 11], i - 11);
     }
   };
+  const handleClick = () => {
+    console.log("hello");
+    setSelected("Minesweeper");
+  };
 
   useEffect(() => {
     initBoard();
@@ -203,7 +211,20 @@ export default function MineSweeper() {
 
   return (
     <>
-      <div className="gameBoard">
+      <div
+        onPointerDown={handleClick}
+        ref={mineRef}
+        // style={
+        //   fullScreen === "fullScreen"
+        //     ? { left: "0", top: "0" }
+        //     : { left: windowPosition.x, top: windowPosition.y }
+        // }
+        className={
+          selected === "Minesweeper"
+            ? `gameBoard top  ${fullScreen}`
+            : "gameBoard"
+        }
+      >
         <ScoreBoard numOfBombs={numOfBombs} numOfFlags={numOfFlags} />
         <div ref={gameOverRef} style={{ display: "none" }} className="gameover">
           <h1>GameOver</h1>
