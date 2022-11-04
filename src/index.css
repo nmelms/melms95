@@ -485,7 +485,7 @@ a {
   height: 30px;
   width: 30px;
   border: 1px solid white;
-  background-color: black;
+  background-color: gray;
   color: transparent;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -514,7 +514,10 @@ a {
   text-align: center;
 }
 .flag {
-  background-color: red !important;
+  background-image: url(../src/assets/flag.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: none;
 }
 .scoreBoard {
   position: absolute;

@@ -12,7 +12,7 @@ export default function MineSweeper() {
   const [fullScreen, setFullScreen] = useState("");
   const [gameBoard, setGameBoard] = useState([]);
   const [numOfFlags, setNumOfFlags] = useState(0);
-  const [numOfBombs, setNumOfBombs] = useState(10);
+  const [numOfBombs, setNumOfBombs] = useState(3);
   const tileRef = useRef([]);
   const gameOverRef = useRef();
   let gameOver = false;
@@ -149,7 +149,11 @@ export default function MineSweeper() {
 
   const handleRightClick = (e, tile, i) => {
     e.preventDefault();
-    if (tile.hidden === false) return;
+    if (tile.hidden === false) {
+      tileRef.current[i].classList.remove("flag");
+      return;
+    }
+
     tile.flag = !tile.flag;
     tile.flag === true
       ? tileRef.current[i].classList.add("flag")
@@ -162,49 +166,86 @@ export default function MineSweeper() {
 
   const check = (tile, i) => {
     // //check top
-    if (tile.x !== 0 && gameBoard[i - 10].hidden === true) {
+    console.log(tile);
+    if (
+      tile.x !== 0 &&
+      gameBoard[i - 10].hidden === true &&
+      gameBoard[i - 10].flag === false
+    ) {
       tileRef.current[i - 10].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i - 10], i - 10);
     }
     //check top right
-    if (tile.y !== 9 && tile.x !== 0 && gameBoard[i - 9].hidden === true) {
+    if (
+      tile.y !== 9 &&
+      tile.x !== 0 &&
+      gameBoard[i - 9].hidden === true &&
+      gameBoard[i - 9].flag === false
+    ) {
       tileRef.current[i - 9].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i - 9], i - 9);
     }
     // check right
-    if (tile.y !== 9 && gameBoard[i + 1].hidden === true) {
+    if (
+      tile.y !== 9 &&
+      gameBoard[i + 1].hidden === true &&
+      gameBoard[i + 1].flag === false
+    ) {
       tileRef.current[i + 1].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i + 1], i + 1);
     }
     //check bottom right
-    if (tile.x !== 9 && tile.y !== 9 && gameBoard[i + 11].hidden === true) {
+    if (
+      tile.x !== 9 &&
+      tile.y !== 9 &&
+      gameBoard[i + 11].hidden === true &&
+      gameBoard[i + 11].flag === false
+    ) {
       tileRef.current[i + 11].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i + 11], i + 11);
     }
     //check bottom
-    if (tile.x !== 9 && gameBoard[i + 10].hidden === true) {
+    if (
+      tile.x !== 9 &&
+      gameBoard[i + 10].hidden === true &&
+      gameBoard[i + 10].flag === false
+    ) {
       tileRef.current[i + 10].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i + 10], i + 10);
     }
     //check bottom left
-    if (tile.x !== 9 && tile.y !== 0 && gameBoard[i + 9].hidden === true) {
+    if (
+      tile.x !== 9 &&
+      tile.y !== 0 &&
+      gameBoard[i + 9].hidden === true &&
+      gameBoard[i + 9].flag === false
+    ) {
       tileRef.current[i + 9].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i + 9], i + 9);
     }
     //check left
-    if (tile.y !== 0 && gameBoard[i - 1].hidden === true) {
+    if (
+      tile.y !== 0 &&
+      gameBoard[i - 1].hidden === true &&
+      gameBoard[i - 1].flag === false
+    ) {
       tileRef.current[i - 1].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i - 1], i - 1);
     }
     //check top left
-    if (tile.y !== 0 && tile.x !== 0 && gameBoard[i - 11].hidden === true) {
+    if (
+      tile.y !== 0 &&
+      tile.x !== 0 &&
+      gameBoard[i - 11].hidden === true &&
+      gameBoard[i - 11].flag === false
+    ) {
       tileRef.current[i - 11].classList.add("visible");
       tile.hidden = false;
       handleTileClick(gameBoard[i - 11], i - 11);
@@ -262,6 +303,9 @@ export default function MineSweeper() {
           );
         })}
       </div>
+      <a href="https://www.flaticon.com/free-icons/finish" title="finish icons">
+        Finish icons created by surang - Flaticon
+      </a>
     </>
   );
 }
