@@ -2,7 +2,9 @@ import React, { useState, useRef, createRef, useContext } from "react";
 import GlobalContext from "../GlobalContext";
 import Time from "./Time";
 import windowsIcon from "../assets/windowsIcon.png";
+import computer from "../assets/mycomputer.png";
 import file from "../assets/file.png";
+import mine from "../assets/mine.png";
 import folder from "../assets/folder2.png";
 
 export default function StartBar({
@@ -130,10 +132,25 @@ export default function StartBar({
               onClick={() => handleIconClick(allItemRefs.current[index], page)}
               className={selected === page ? "pressed" : "notPressed"}
             >
-              <img
-                style={{ height: "100%" }}
-                src={page === "Bio" || page === "Projects" ? folder : file}
-              />
+              {page === "Bio" && (
+                <img style={{ height: "100%" }} src={computer} />
+              )}
+              {page === "Projects" && (
+                <img style={{ height: "100%" }} src={folder} />
+              )}
+              {page === "Minesweeper" && (
+                <img style={{ height: "100%" }} src={mine} />
+              )}
+              {page === "Planet Facts" && (
+                <img style={{ height: "100%" }} src={file} />
+              )}
+              {page === "National Parks" && (
+                <img style={{ height: "100%" }} src={file} />
+              )}
+              {page === "Invoice App" && (
+                <img style={{ height: "100%" }} src={file} />
+              )}
+
               {page}
             </div>
           );

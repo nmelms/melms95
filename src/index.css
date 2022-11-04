@@ -473,8 +473,8 @@ a {
 /* minesweeper styles */
 
 .gameBoard {
+  touch-action: none;
   position: relative;
-  width: fit-content;
   box-sizing: content-box;
   border: 2px outset black;
   border-top-color: whitesmoke;
@@ -482,14 +482,17 @@ a {
   border-bottom: none;
   height: fit-content;
   width: calc(30px * 10);
+  max-width: calc(30px * 10);
   display: flex;
   flex-wrap: wrap;
 }
 .gameWrapper {
-  top: 25%;
-  left: 25%;
+  width: calc(30px * 10);
+  max-width: calc(30px * 10);
   height: fit-content;
-  position: relative;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
   background-color: var(--secondaryBg);
 }
 

@@ -1,25 +1,35 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import GlobalContext from "../../GlobalContext";
-import file from "../../assets/shutdown.png";
+import file from "../../assets/mine.png";
 import Tile from "./Tile";
 import Bomb from "./Bomb";
 import { getByTitle } from "@testing-library/dom";
 import ScoreBoard from "./ScoreBoard";
+import { useDrag } from "@use-gesture/react";
 
 export default function MineSweeper() {
-  const { mineRef, selected, setSelected } = useContext(GlobalContext);
+  const { mineRef, selected, setSelected, pages, setPages } =
+    useContext(GlobalContext);
   const [newGame, setNewGame] = useState(false);
   const [gameWon, setGameWon] = useState(false);
   const [fullScreen, setFullScreen] = useState("");
   const [gameBoard, setGameBoard] = useState([]);
   const [numOfFlags, setNumOfFlags] = useState(0);
-  const [numOfBombs, setNumOfBombs] = useState(3);
+  const [numOfBombs, setNumOfBombs] = useState(10);
   const tileRef = useRef([]);
   const gameOverRef = useRef();
   let gameOver = false;
   const row = 10;
   const col = 10;
-  console.log(selected);
+
+  const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+
+  const bindWindowPos = useDrag((params) => {
+    setWindowPosition({
+      x: params.offset[0],
+      y: params.offset[1],
+    });
+  });
 
   const initBoard = () => {
     let newGameBoard = [];
@@ -257,6 +267,23 @@ export default function MineSweeper() {
     setSelected("Minesweeper");
   };
 
+  const handleCloseClick = (event) => {
+    const newArr = pages;
+    const filtered = newArr.filter((item) => item !== "Minesweeper");
+    setPages(filtered);
+  };
+  const handleFullScreenClick = () => {
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
+  };
+
+  const handleMinimizeClick = (e) => {
+    e.stopPropagation();
+    setSelected("");
+    mineRef.current.style.display = "none";
+  };
+
   useEffect(() => {
     initBoard();
   }, []);
@@ -270,39 +297,45 @@ export default function MineSweeper() {
     });
 
   return (
-    <div className="gameWrapper">
+    <div
+      style={
+        fullScreen === "fullScreen"
+          ? { display: "flex", left: "0", top: "0" }
+          : { display: "flex", left: windowPosition.x, top: windowPosition.y }
+      }
+      className="gameWrapper"
+    >
       <div
         onPointerDown={handleClick}
         ref={mineRef}
-        style={{ display: "flex" }}
         className={
           selected === "Minesweeper"
             ? `gameBoard top  ${fullScreen}`
             : "gameBoard"
         }
       >
-        <nav className="windowNav">
+        <nav {...bindWindowPos()} className="windowNav">
           <div className="nameAndIcon">
             <img style={{ height: "18px" }} src={file} />
-            <p>Planet Facts</p>
+            <p>MineSweeper</p>
           </div>
           <div className="windowNavBtns">
             <button
-              // onClick={(event) => handleMinimizeClick(event)}
+              onClick={(event) => handleMinimizeClick(event)}
               // onPointerDown={(e) => miniDown(e)}
               className="navBtn"
             >
               _
             </button>
-            <button
-              // onClick={(event) => handleFullScreenClick(event)}
+            {/* <button
+              onClick={(event) => handleFullScreenClick(event)}
               className="navBtn"
             >
               O
-            </button>
+            </button> */}
             <button
               data-testid="npsClose"
-              // onClick={(event) => handleCloseClick(event)}
+              onClick={(event) => handleCloseClick(event)}
               className="navBtn"
             >
               X
