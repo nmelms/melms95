@@ -473,16 +473,24 @@ a {
 /* minesweeper styles */
 
 .gameBoard {
-  top: 25%;
-  left: 25%;
   position: relative;
   width: fit-content;
   box-sizing: content-box;
-  border: 5px solid gray;
+  border: 2px outset black;
+  border-top-color: whitesmoke;
+  border-left-color: whitesmoke;
+  border-bottom: none;
   height: fit-content;
   width: calc(30px * 10);
   display: flex;
   flex-wrap: wrap;
+}
+.gameWrapper {
+  top: 25%;
+  left: 25%;
+  height: fit-content;
+  position: relative;
+  background-color: var(--secondaryBg);
 }
 
 .tile {
@@ -534,7 +542,7 @@ a {
 }
 .scoreBoard {
   box-sizing: border-box;
-  border: 10px solid gray;
+  border: 2px solid var(--secondaryBg);
   position: relative;
   height: 100px;
   background-color: white;

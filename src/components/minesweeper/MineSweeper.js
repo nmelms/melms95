@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import GlobalContext from "../../GlobalContext";
+import file from "../../assets/shutdown.png";
 import Tile from "./Tile";
 import Bomb from "./Bomb";
 import { getByTitle } from "@testing-library/dom";
@@ -269,7 +270,7 @@ export default function MineSweeper() {
     });
 
   return (
-    <>
+    <div className="gameWrapper">
       <div
         onPointerDown={handleClick}
         ref={mineRef}
@@ -280,6 +281,34 @@ export default function MineSweeper() {
             : "gameBoard"
         }
       >
+        <nav className="windowNav">
+          <div className="nameAndIcon">
+            <img style={{ height: "18px" }} src={file} />
+            <p>Planet Facts</p>
+          </div>
+          <div className="windowNavBtns">
+            <button
+              // onClick={(event) => handleMinimizeClick(event)}
+              // onPointerDown={(e) => miniDown(e)}
+              className="navBtn"
+            >
+              _
+            </button>
+            <button
+              // onClick={(event) => handleFullScreenClick(event)}
+              className="navBtn"
+            >
+              O
+            </button>
+            <button
+              data-testid="npsClose"
+              // onClick={(event) => handleCloseClick(event)}
+              className="navBtn"
+            >
+              X
+            </button>
+          </div>
+        </nav>
         <ScoreBoard numOfBombs={numOfBombs} numOfFlags={numOfFlags} />
         {gameWon && (
           <div style={{ display: "flex" }} className="gameover">
@@ -307,6 +336,6 @@ export default function MineSweeper() {
       <a href="https://www.flaticon.com/free-icons/finish" title="finish icons">
         Finish icons created by surang - Flaticon
       </a>
-    </>
+    </div>
   );
 }
