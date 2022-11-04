@@ -307,6 +307,7 @@ export default function MineSweeper() {
     >
       <div
         onPointerDown={handleClick}
+        style={{ display: "flex" }}
         ref={mineRef}
         className={
           selected === "Minesweeper"
@@ -366,9 +367,6 @@ export default function MineSweeper() {
           );
         })}
       </div>
-      <a href="https://www.flaticon.com/free-icons/finish" title="finish icons">
-        Finish icons created by surang - Flaticon
-      </a>
     </div>
   );
 }
