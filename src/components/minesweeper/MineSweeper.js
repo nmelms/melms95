@@ -117,6 +117,7 @@ export default function MineSweeper() {
     gameBoard.map((tile, i) => {
       tileRef.current[i].classList.remove("visible");
       tileRef.current[i].classList.remove("flag");
+      tileRef.current[i].classList.remove("visibleBomb");
     });
     gameOverRef.current.style.display = "none";
     initBoard();
@@ -142,7 +143,7 @@ export default function MineSweeper() {
     gameOverRef.current.style.display = "block";
     gameBoard.map((tile, i) => {
       if (tile.value === "x") {
-        tileRef.current[i].classList.add("visible");
+        tileRef.current[i].classList.add("visibleBomb");
       }
     });
   };
@@ -263,7 +264,7 @@ export default function MineSweeper() {
   gameWon &&
     gameBoard.map((tile, i) => {
       if (tile.value === "x") {
-        tileRef.current[i].classList.add("visible");
+        tileRef.current[i].classList.add("visibleBomb");
       }
     });
 
@@ -272,12 +273,7 @@ export default function MineSweeper() {
       <div
         onPointerDown={handleClick}
         ref={mineRef}
-        style={
-          { display: "flex" }
-          // fullScreen === "fullScreen"
-          //   ? { left: "0", top: "0" }
-          //   : { left: windowPosition.x, top: windowPosition.y }
-        }
+        style={{ display: "flex" }}
         className={
           selected === "Minesweeper"
             ? `gameBoard top  ${fullScreen}`
@@ -285,7 +281,12 @@ export default function MineSweeper() {
         }
       >
         <ScoreBoard numOfBombs={numOfBombs} numOfFlags={numOfFlags} />
-        {gameWon && <div className="gameover">You Won</div>}
+        {gameWon && (
+          <div style={{ display: "flex" }} className="gameover">
+            <h1>You Win!</h1>
+            <button onClick={() => resetClick()}>Reset</button>
+          </div>
+        )}
         <div ref={gameOverRef} style={{ display: "none" }} className="gameover">
           <h1>GameOver</h1>
           <button onClick={() => resetClick()}>Reset</button>
@@ -298,7 +299,7 @@ export default function MineSweeper() {
               onClick={() => handleTileClick(tile, i)}
               className="tile"
             >
-              {tile.value}
+              {tile.value !== "x" && tile.value}
             </div>
           );
         })}
