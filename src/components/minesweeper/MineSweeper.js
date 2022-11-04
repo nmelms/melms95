@@ -8,6 +8,7 @@ import ScoreBoard from "./ScoreBoard";
 export default function MineSweeper() {
   const { mineRef, selected, setSelected } = useContext(GlobalContext);
   const [newGame, setNewGame] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
   const [fullScreen, setFullScreen] = useState("");
   const [gameBoard, setGameBoard] = useState([]);
   const [numOfFlags, setNumOfFlags] = useState(0);
@@ -23,6 +24,7 @@ export default function MineSweeper() {
     let newGameBoard = [];
     let bombsArr = [];
     setNumOfFlags(0);
+    setGameWon(false);
     const setNumbers = () => {
       newGameBoard.map((tile, index) => {
         let bombCount = 0;
@@ -121,6 +123,14 @@ export default function MineSweeper() {
   };
 
   const handleTileClick = (tile, i) => {
+    let count = 0;
+    gameBoard.map((tile) => {
+      tile.hidden === false && count++;
+      if (count === row * col - numOfBombs - 1) {
+        setGameWon(true);
+      }
+    });
+
     if (tile.flag === true) return;
     tileRef.current[i].classList.add("visible");
     tile.hidden = false;
@@ -201,7 +211,6 @@ export default function MineSweeper() {
     }
   };
   const handleClick = () => {
-    console.log("hello");
     setSelected("Minesweeper");
   };
 
@@ -209,16 +218,25 @@ export default function MineSweeper() {
     initBoard();
   }, []);
 
+  //shows bombs when game is won
+  gameWon &&
+    gameBoard.map((tile, i) => {
+      if (tile.value === "x") {
+        tileRef.current[i].classList.add("visible");
+      }
+    });
+
   return (
     <>
       <div
         onPointerDown={handleClick}
         ref={mineRef}
-        // style={
-        //   fullScreen === "fullScreen"
-        //     ? { left: "0", top: "0" }
-        //     : { left: windowPosition.x, top: windowPosition.y }
-        // }
+        style={
+          { display: "flex" }
+          // fullScreen === "fullScreen"
+          //   ? { left: "0", top: "0" }
+          //   : { left: windowPosition.x, top: windowPosition.y }
+        }
         className={
           selected === "Minesweeper"
             ? `gameBoard top  ${fullScreen}`
@@ -226,6 +244,7 @@ export default function MineSweeper() {
         }
       >
         <ScoreBoard numOfBombs={numOfBombs} numOfFlags={numOfFlags} />
+        {gameWon && <div className="gameover">You Won</div>}
         <div ref={gameOverRef} style={{ display: "none" }} className="gameover">
           <h1>GameOver</h1>
           <button onClick={() => resetClick()}>Reset</button>
