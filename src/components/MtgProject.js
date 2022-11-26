@@ -103,13 +103,12 @@ export default function MtgProject({ pages, setPages }) {
         <h2>About This Project</h2>
         <p>
           In this project I created a deck builder for the trading card game
-          "Magic: The Gathering". This was created only using vanilla
-          Javascript/HTML/CSS. I fetch data from the Scryfall API and save the
-          deck information into the user's local stroage. I plan to add on
-          Firebase as a backend and allow users to save multiple decks under
-          their accounts. Feel free to add cards to your deck or if you have no
-          idea how to play the game you can check out some of the amazing
-          artwork!
+          "Magic: The Gathering". This was created using vanilla Javascript and
+          Bootstrap. I fetch data from the Scryfall API and save the deck
+          information into the user's local stroage. I plan to add on Firebase
+          as a backend and allow users to save multiple decks under their
+          accounts. Feel free to add cards to your deck or if you have no idea
+          how to play the game you can check out some of the amazing artwork!
         </p>
         <div className="icons">
           <a href="https://github.com/Nmelms/deck_builder">
