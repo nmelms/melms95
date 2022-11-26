@@ -6,16 +6,7 @@ import Icon from "./Icon";
 import { useDrag } from "@use-gesture/react";
 
 export default function Projects({ pages, setPages, display }) {
-  const {
-    projectRef,
-    npsRef,
-    planetRef,
-    visiblePages,
-    setVisiblePages,
-    invoiceRef,
-    selected,
-    setSelected,
-  } = useContext(GlobalContext);
+  const { projectRef, selected, setSelected } = useContext(GlobalContext);
   const [windowPosition, setWindowPosition] = useState({
     x: 0,
     y: 0,
@@ -38,18 +29,9 @@ export default function Projects({ pages, setPages, display }) {
     if (!pages.includes(name)) {
       setPages([...pages, name]);
       setSelected(name);
-      console.log(selected);
     } else {
       setSelected(name);
     }
-
-    // if (name === "Invoice App") {
-    //   invoiceRef.current.style.display = "block";
-    // } else if (name === "National Parks") {
-    //   npsRef.current.style.display = "block";
-    // } else if (name === "Planet Facts") {
-    //   planetRef.current.style.display = "block";
-    // }
   };
   const handleCloseClick = (e) => {
     const newArr = pages;
@@ -132,6 +114,12 @@ export default function Projects({ pages, setPages, display }) {
           name="Planet Facts"
           imgSrc={file}
           alt="planet facts project"
+        />
+        <Icon
+          handleClick={(e) => handleIconClick(e, "MTG Deck Builder")}
+          name="MTG Deck Builder"
+          imgSrc={file}
+          alt="Deck builder"
         />
       </div>
     </div>

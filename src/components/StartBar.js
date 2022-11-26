@@ -23,6 +23,7 @@ export default function StartBar({
     invoiceRef,
     mineRef,
     npsRef,
+    mtgRef,
     visiblePages,
     setVisiblePages,
   } = useContext(GlobalContext);
@@ -78,36 +79,13 @@ export default function StartBar({
         mineRef.current.classList.contains("top")
           ? "none"
           : "flex";
+    } else if (page === "MTG Deck Builder") {
+      mtgRef.current.style.display =
+        mtgRef.current.style.display === "block" &&
+        mtgRef.current.classList.contains("top")
+          ? "none"
+          : "block";
     }
-
-    // selected === page && setSelected("");
-    // selected !== page && setSelected(page);
-    // if (page === "Bio") {
-    //   bioRef.current.style.display === "flex" &&
-    //   bioRef.current.classList.contains("top")
-    //     ? (bioRef.current.style.display = "none")
-    //     : (bioRef.current.style.display = "flex");
-    // } else if (page === "Projects") {
-    //   projectRef.current.style.display === "flex" &&
-    //   projectRef.current.classList.contains("top")
-    //     ? (projectRef.current.style.display = "none")
-    //     : (projectRef.current.style.display = "flex");
-    // } else if (page === "Planet Facts") {
-    //   planetRef.current.style.display === "block" &&
-    //   planetRef.current.classList.contains("top")
-    //     ? (planetRef.current.style.display = "none")
-    //     : (planetRef.current.style.display = "block");
-    // } else if (page === "National Parks") {
-    //   npsRef.current.style.display === "block" &&
-    //   npsRef.current.classList.contains("top")
-    //     ? (npsRef.current.style.display = "none")
-    //     : (npsRef.current.style.display = "block");
-    // } else if (page === "Invoice App") {
-    //   invoiceRef.current.style.display === "block" &&
-    //   invoiceRef.current.classList.contains("top")
-    //     ? (invoiceRef.current.style.display = "none")
-    //     : (invoiceRef.current.style.display = "block");
-    // }
   };
 
   return (
@@ -150,7 +128,9 @@ export default function StartBar({
               {page === "Invoice App" && (
                 <img style={{ height: "100%" }} src={file} />
               )}
-
+              {page === "MTG Deck Builder" && (
+                <img style={{ height: "100%" }} src={file} />
+              )}
               {page}
             </div>
           );
