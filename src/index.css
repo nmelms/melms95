@@ -146,7 +146,7 @@ a {
 }
 .clock {
   display: flex;
-  min-width: 60px;
+  min-width: fit-content;
   justify-content: center;
   margin: 5px;
   padding-left: 0.5rem;
