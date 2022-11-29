@@ -110,12 +110,11 @@ export default function PlanetProject({ pages, setPages }) {
         />
         <h2>About This Project</h2>
         <p>
-          This is a full stack CRUD app I created using React and Firebase.
-          Crrently everyone using the app shares the same database but I plan on
-          adding a sign in feature so you can keep track of of your own clients.
-          In this app you can create and track invoices and have full CRUD
-          ability. This design was provided to me via a Figma file and I buit
-          the rest myself.
+          This app displays planet facts from Wikipedia. You can choose a planet
+          in our solar system and view facts on the structure and surface of the
+          planet. The design was provided to me via a Figma file and I created
+          it with React for the front-end. Have fun exploring and learning more
+          about our solar system!
         </p>
         <div className="icons">
           <a href="https://github.com/Nmelms/planets">

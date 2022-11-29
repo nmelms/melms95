@@ -104,9 +104,9 @@ export default function NpsProject() {
         <h2>About This Project</h2>
         <p>
           This is a project I designed and created using the National Park
-          Service API. In this project I use fetch to retreive data from the NPS
+          Service API. In this project I use fetch to retrieve data from the NPS
           API and display it using React. You can view active webcams as well as
-          indiviual park info such as entrance fees and park location. Have fun
+          individual park info such as entrance fees and park location. Have fun
           exploring America's National Parks!
         </p>
         <div className="icons">
