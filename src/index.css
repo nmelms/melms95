@@ -120,7 +120,6 @@ a {
 
 .pressed {
   overflow-x: hidden;
-  min-width: 50px;
   white-space: nowrap;
   display: flex;
   font-size: 1.5rem;
@@ -130,6 +129,7 @@ a {
   background-color: lightgray;
   margin: 0.25rem;
   border: 2px inset;
+  min-width: 80px;
   width: 170px;
   border-bottom-color: white;
   border-right-color: white;
