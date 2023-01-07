@@ -85,6 +85,18 @@ export default function StartBar({
         mtgRef.current.classList.contains("top")
           ? "none"
           : "block";
+    } else if (page === "Burger") {
+      mtgRef.current.style.display =
+        mtgRef.current.style.display === "block" &&
+        mtgRef.current.classList.contains("top")
+          ? "none"
+          : "block";
+    } else if (page === "Pokedex") {
+      mtgRef.current.style.display =
+        mtgRef.current.style.display === "block" &&
+        mtgRef.current.classList.contains("top")
+          ? "none"
+          : "block";
     }
   };
 

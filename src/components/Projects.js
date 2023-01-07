@@ -116,6 +116,18 @@ export default function Projects({ pages, setPages, display }) {
           alt="planet facts project"
         />
         <Icon
+          handleClick={(e) => handleIconClick(e, "Pokedex")}
+          name="Pokedex"
+          imgSrc={file}
+          alt="Pokedex project"
+        />
+        <Icon
+          handleClick={(e) => handleIconClick(e, "Burger")}
+          name="Burger Restaurant"
+          imgSrc={file}
+          alt="burger restaurant project"
+        />
+        <Icon
           handleClick={(e) => handleIconClick(e, "MTG Deck Builder")}
           name="MTG Deck Builder"
           imgSrc={file}

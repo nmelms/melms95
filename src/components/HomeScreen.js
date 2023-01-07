@@ -14,6 +14,8 @@ import InvoiceProject from "./InvoiceProject";
 import PlanetProject from "./PlanetProject";
 import MineSweeper from "./minesweeper/MineSweeper";
 import MtgProject from "./MtgProject";
+import BurgerProject from "./BurgerProject";
+import Pokedex from "./Pokedex";
 
 export default function HomeScreen() {
   const { pages, setPages, selected, setSelected } = useContext(GlobalContext);
@@ -123,6 +125,22 @@ export default function HomeScreen() {
       )}
       {pages.includes("MTG Deck Builder") && (
         <MtgProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("Burger") && (
+        <BurgerProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("Pokedex") && (
+        <Pokedex
           pages={pages}
           setPages={setPages}
           setSelected={setSelected}
