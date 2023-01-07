@@ -1,5 +1,5 @@
 # Melms95
-Welcome to my personal website, where you can find a portfolio of my work inspired by the classic Windows 95 operating system. Take a look around and see some of the projects I've created with a nod to the iconic design of this beloved software.
+This is my personal website where you can find a portfolio of my work inspired by the classic Windows 95 operating system. Take a look around and see some of the projects I've created with a nod to the iconic design of this beloved software.
 
 ## Installation
 This website is hosted on Netlify, so there is no need to install anything locally. Simply click [HERE](https://nickmelms.netlify.app).
