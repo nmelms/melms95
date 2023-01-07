@@ -19,6 +19,8 @@ export default function StartBar({
     setSelected,
     planetRef,
     bioRef,
+    burgerRef,
+    pokeRef,
     projectRef,
     invoiceRef,
     mineRef,
@@ -86,15 +88,15 @@ export default function StartBar({
           ? "none"
           : "block";
     } else if (page === "Burger") {
-      mtgRef.current.style.display =
-        mtgRef.current.style.display === "block" &&
-        mtgRef.current.classList.contains("top")
+      burgerRef.current.style.display =
+        burgerRef.current.style.display === "block" &&
+        burgerRef.current.classList.contains("top")
           ? "none"
           : "block";
     } else if (page === "Pokedex") {
-      mtgRef.current.style.display =
-        mtgRef.current.style.display === "block" &&
-        mtgRef.current.classList.contains("top")
+      pokeRef.current.style.display =
+        pokeRef.current.style.display === "block" &&
+        pokeRef.current.classList.contains("top")
           ? "none"
           : "block";
     }
@@ -141,6 +143,12 @@ export default function StartBar({
                 <img style={{ height: "100%" }} src={file} />
               )}
               {page === "MTG Deck Builder" && (
+                <img style={{ height: "100%" }} src={file} />
+              )}
+              {page === "Burger" && (
+                <img style={{ height: "100%" }} src={file} />
+              )}
+              {page === "Pokedex" && (
                 <img style={{ height: "100%" }} src={file} />
               )}
               {page}

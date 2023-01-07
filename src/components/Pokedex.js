@@ -8,7 +8,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useDrag } from "@use-gesture/react";
 
 export default function MtgProject({ pages, setPages }) {
-  const { mtgRef, selected, setSelected } = useContext(GlobalContext);
+  const { pokeRef, selected, setSelected } = useContext(GlobalContext);
 
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [fullScreen, setFullScreen] = useState("");
@@ -43,7 +43,7 @@ export default function MtgProject({ pages, setPages }) {
   const handleMinimizeClick = (e) => {
     e.stopPropagation();
     setSelected("");
-    mtgRef.current.style.display = "none";
+    pokeRef.current.style.display = "none";
   };
   const miniDown = (e) => {
     e.stopPropagation();
@@ -58,7 +58,7 @@ export default function MtgProject({ pages, setPages }) {
           : { left: windowPosition.x, top: windowPosition.y, display: "block" }
       }
       id="Pokedex"
-      ref={mtgRef}
+      ref={pokeRef}
       className={
         selected === "Pokedex" ? `npsProject top  ${fullScreen}` : "npsProject"
       }

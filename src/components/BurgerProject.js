@@ -8,7 +8,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useDrag } from "@use-gesture/react";
 
 export default function MtgProject({ pages, setPages }) {
-  const { mtgRef, selected, setSelected } = useContext(GlobalContext);
+  const { burgerRef, selected, setSelected } = useContext(GlobalContext);
 
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [fullScreen, setFullScreen] = useState("");
@@ -43,7 +43,7 @@ export default function MtgProject({ pages, setPages }) {
   const handleMinimizeClick = (e) => {
     e.stopPropagation();
     setSelected("");
-    mtgRef.current.style.display = "none";
+    burgerRef.current.style.display = "none";
   };
   const miniDown = (e) => {
     e.stopPropagation();
@@ -58,7 +58,7 @@ export default function MtgProject({ pages, setPages }) {
           : { left: windowPosition.x, top: windowPosition.y, display: "block" }
       }
       id="Burger"
-      ref={mtgRef}
+      ref={burgerRef}
       className={
         selected === "Burger" ? `npsProject top  ${fullScreen}` : "npsProject"
       }
