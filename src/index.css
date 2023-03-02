@@ -6,6 +6,7 @@
   --app-height: 100vh;
 }
 * {
+  box-sizing: border-box;
   scrollbar-color: var(--primaryBg) lightgray;
 }
 ::-webkit-scrollbar {
@@ -119,7 +120,6 @@ a {
 
 .pressed {
   overflow-x: hidden;
-  min-width: 50px;
   white-space: nowrap;
   display: flex;
   font-size: 1.5rem;
@@ -129,6 +129,7 @@ a {
   background-color: lightgray;
   margin: 0.25rem;
   border: 2px inset;
+  min-width: 80px;
   width: 170px;
   border-bottom-color: white;
   border-right-color: white;
@@ -145,7 +146,7 @@ a {
 }
 .clock {
   display: flex;
-  min-width: 60px;
+  min-width: fit-content;
   justify-content: center;
   margin: 5px;
   padding-left: 0.5rem;
@@ -467,4 +468,86 @@ a {
   .npsProject {
     left: 5%;
   }
+}
+
+/* minesweeper styles */
+
+.gameBoard {
+  touch-action: none;
+  position: relative;
+  box-sizing: content-box;
+  border: 2px outset black;
+  border-top-color: whitesmoke;
+  border-left-color: whitesmoke;
+  border-bottom: none;
+  height: fit-content;
+  width: calc(30px * 10);
+  max-width: calc(30px * 10);
+  display: flex;
+  flex-wrap: wrap;
+}
+.gameWrapper {
+  width: calc(30px * 10);
+  max-width: calc(30px * 10);
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondaryBg);
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  background-color: var(--primaryBg);
+  border: 4px solid black;
+  border-top-color: white;
+  border-left-color: white;
+  color: transparent;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+.visibleBomb {
+  height: 30px;
+  width: 30px;
+  border: 1px solid gray;
+  background-color: var(--primaryBg);
+  background-image: url(../src/assets/bomb.png);
+  background-position: center;
+  background-size: contain;
+}
+.visible {
+  background-color: var(--primaryBg);
+  border: 1px solid gray;
+  color: black !important;
+}
+.gameover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30%;
+  align-items: center;
+  text-align: center;
+}
+.flag {
+  background-image: url(../src/assets/flag.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: none;
+}
+.scoreBoard {
+  box-sizing: border-box;
+  border: 2px solid var(--secondaryBg);
+  position: relative;
+  height: 100px;
+  background-color: white;
+  width: 100%;
 }

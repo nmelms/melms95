@@ -6,24 +6,19 @@ import Icon from "./Icon";
 import recycle from "../assets/recycle.png";
 import mycomputer from "../assets/mycomputer.png";
 import folder from "../assets/folder2.png";
+import mine from "../assets/mine.png";
 import Window from "./Window";
 import Projects from "./Projects";
 import NpsProject from "./NpsProject";
 import InvoiceProject from "./InvoiceProject";
 import PlanetProject from "./PlanetProject";
+import MineSweeper from "./minesweeper/MineSweeper";
+import MtgProject from "./MtgProject";
+import BurgerProject from "./BurgerProject";
+import Pokedex from "./Pokedex";
 
 export default function HomeScreen() {
-  const {
-    pages,
-    setPages,
-    visiblePages,
-    setVisiblePages,
-    selected,
-    setSelected,
-    dragging,
-    bioRef,
-    projectRef,
-  } = useContext(GlobalContext);
+  const { pages, setPages, selected, setSelected } = useContext(GlobalContext);
   const [showMenu, setShowMenu] = useState(false);
   const [activePages, setActivePages] = useState([]);
 
@@ -42,17 +37,6 @@ export default function HomeScreen() {
     if (!pages.includes(name)) {
       setPages([...pages, name]);
     }
-    // if (name === "Bio") {
-    //   bioRef.current.style.display === "flex" &&
-    //   bioRef.current.classList.contains("top")
-    //     ? (bioRef.current.style.display = "none")
-    //     : (bioRef.current.style.display = "flex");
-    // } else if (name === "Projects") {
-    //   projectRef.current.style.display === "flex" &&
-    //   projectRef.current.classList.contains("top")
-    //     ? (projectRef.current.style.display = "none")
-    //     : (projectRef.current.style.display = "flex");
-    // }
   };
 
   return (
@@ -72,6 +56,12 @@ export default function HomeScreen() {
           name="Projects"
           alt="projects"
           imgSrc={folder}
+        />
+        <Icon
+          handleClick={(e) => handleClick(e, "Minesweeper")}
+          name="Minesweeper"
+          alt="Minesweeper"
+          imgSrc={mine}
         />
       </div>
 
@@ -116,6 +106,41 @@ export default function HomeScreen() {
       )}
       {pages.includes("Planet Facts") && (
         <PlanetProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("Minesweeper") && (
+        <MineSweeper
+          display={pages.includes("Minesweeper") ? "flex" : "none"}
+          selected={selected}
+          handleClick={() => handleClick("MineSweeper")}
+          pages={pages}
+          setPages={setPages}
+          activePages={activePages}
+          setActivePages={setActivePages}
+        />
+      )}
+      {pages.includes("MTG Deck Builder") && (
+        <MtgProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("Burger") && (
+        <BurgerProject
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("Pokedex") && (
+        <Pokedex
           pages={pages}
           setPages={setPages}
           setSelected={setSelected}

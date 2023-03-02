@@ -1,25 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useRef, useState, useContext } from "react";
 import GlobalContext from "../GlobalContext";
-import nps from "../assets/npsScreenShot.png";
 import file from "../assets/file.png";
+import screenShot from "../assets/burgerScreenShot.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useDrag } from "@use-gesture/react";
 
-export default function NpsProject() {
-  const { planetRef, selected, setSelected, pages, setPages, npsRef, display } =
-    useContext(GlobalContext);
-  const [fullScreen, setFullScreen] = useState("");
+export default function MtgProject({ pages, setPages }) {
+  const { burgerRef, selected, setSelected } = useContext(GlobalContext);
+
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
-  useEffect(() => {}, []);
+  const [fullScreen, setFullScreen] = useState("");
+
+  const [styles, setStyles] = useState({
+    display: "block",
+    left: windowPosition.x,
+    top: windowPosition.y,
+  });
 
   const bindWindowPos = useDrag((params) => {
-    if (params.first) {
-      console.log("first");
-      params.offset[0] = windowPosition.x;
-      params.offset[1] = windowPosition.y;
-    }
     setWindowPosition({
       x: params.offset[0],
       y: params.offset[1],
@@ -27,24 +27,23 @@ export default function NpsProject() {
   });
 
   const handleClick = () => {
-    setSelected("National Parks");
+    setSelected("Burger");
   };
   const handleCloseClick = (event) => {
     const newArr = pages;
-    const filtered = newArr.filter((item) => item !== "National Parks");
+    const filtered = newArr.filter((item) => item !== "Burger");
     setPages(filtered);
-    if (npsRef.current.classList.contains("fullScreen")) {
-      npsRef.current.classList.remove("fullScreen");
-      npsRef.current.style.display = "none";
-    }
   };
   const handleFullScreenClick = () => {
-    npsRef.current.classList.toggle("fullScreen");
+    fullScreen === "fullScreen"
+      ? setFullScreen("")
+      : setFullScreen("fullScreen");
   };
+
   const handleMinimizeClick = (e) => {
     e.stopPropagation();
     setSelected("");
-    npsRef.current.style.display = "none";
+    burgerRef.current.style.display = "none";
   };
   const miniDown = (e) => {
     e.stopPropagation();
@@ -53,22 +52,21 @@ export default function NpsProject() {
   return (
     <div
       onPointerDown={handleClick}
-      style={{
-        display: display,
-        left: windowPosition.x,
-        top: windowPosition.y,
-      }}
-      ref={npsRef}
+      style={
+        fullScreen === "fullScreen"
+          ? { left: "0", top: "0" }
+          : { left: windowPosition.x, top: windowPosition.y, display: "block" }
+      }
+      id="Burger"
+      ref={burgerRef}
       className={
-        selected === "National Parks"
-          ? `npsProject top ${fullScreen}`
-          : "npsProject"
+        selected === "Burger" ? `npsProject top  ${fullScreen}` : "npsProject"
       }
     >
       <nav {...bindWindowPos()} className="windowNav">
         <div className="nameAndIcon">
           <img style={{ height: "18px" }} src={file} />
-          <p>National Parks</p>
+          <p>Burger Bun</p>
         </div>
         <div className="windowNavBtns">
           <button
@@ -94,26 +92,28 @@ export default function NpsProject() {
         </div>
       </nav>
       <div className="projectBody">
-        <h1>Explore National Parks</h1>
+        <h1>Burger Bun</h1>
         <img
           alt="screen shot of National Parks project"
           className="screenShot"
-          src={nps}
+          src={screenShot}
         />
-
         <h2>About This Project</h2>
         <p>
-          This is a project I designed and created using the National Park
-          Service API. In this project I use fetch to retrieve data from the NPS
-          API and display it using React. You can view active webcams as well as
-          individual park info such as entrance fees and park location. Have fun
-          exploring America's National Parks!
+          This website is a sample brochure site for a fictional burger
+          restaurant called Burger Bun. This site allows users to browse the
+          menu, view pictures, and learn more about the restaurant, such as its
+          store hours. In creating this project, my goal was to build a simple
+          and effective website for a small business. To achieve this, I used
+          vanilla JavaScript and relied on Bootstrap for styling assistance. The
+          result is a clean, responsive, and user-friendly site that showcases
+          the restaurant's offerings and information.
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/national-parks">
+          <a href="https://github.com/Nmelms/burgerRestaurant">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmelmsnps.netlify.app">
+          <a href="https://nmburgers.netlify.app/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

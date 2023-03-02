@@ -5,8 +5,12 @@ const GlobalContext = createContext();
 export function GlobalProvider({ children }) {
   const planetRef = useRef();
   const bioRef = useRef();
+  const pokeRef = useRef();
+  const burgerRef = useRef();
   const projectRef = useRef();
   const invoiceRef = useRef();
+  const mtgRef = useRef();
+  const mineRef = useRef();
   const npsRef = useRef();
   const [diffX, setDiffX] = useState();
   const [diffY, setDiffY] = useState();
@@ -35,8 +39,12 @@ export function GlobalProvider({ children }) {
         setVisiblePages,
         planetRef,
         bioRef,
+        pokeRef,
+        burgerRef,
         projectRef,
         invoiceRef,
+        mineRef,
+        mtgRef,
         npsRef,
         pages,
         setPages,

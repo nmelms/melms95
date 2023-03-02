@@ -96,7 +96,7 @@ export default function InvoiceProject() {
         <h2>About This Project</h2>
         <p>
           This is a full stack CRUD app I created using React and Firebase.
-          Crrently everyone using the app shares the same database but I plan on
+          Curently everyone using the app shares the same database but I plan on
           adding a sign in feature so you can keep track of of your own clients.
           In this app you can create and track invoices and have full CRUD
           ability. This design was provided to me via a Figma file and I buit
