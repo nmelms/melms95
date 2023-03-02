@@ -15,12 +15,11 @@ export default function StartMenu() {
       </div>
 
       <div className="programs">
-        <a href={pdf}>
-          <div className="program">
-            <img alt="folder icon" src={folder} />
-            <u>R</u>esume
-          </div>
-        </a>
+        <div className="program">
+          <img alt="folder icon" src={folder} />
+          <u>R</u>esume
+        </div>
+
         <a href="mailto: nmelms92@gmail.com">
           <div className="program">
             <img alt="email icon" src={email} />
