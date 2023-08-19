@@ -373,11 +373,12 @@ a {
   flex-wrap: wrap;
   color: black;
   position: relative;
-  height: 80%;
   width: 95%;
   background-color: white;
   margin: 1rem;
   border: 2px inset black;
+  min-height: 80%;
+  overflow: auto;
 }
 .npsProject {
   overflow-y: hidden;
@@ -433,7 +434,7 @@ a {
   display: flex;
   /* border: 2px solid red; */
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .openWindowIcon {
   overflow-x: hidden;
