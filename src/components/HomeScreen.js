@@ -36,7 +36,7 @@ export default function HomeScreen() {
     setSelected(name);
     console.log(name);
     if (document.querySelector(`.${name}`)) {
-      document.querySelector(`.${name}`).style.display = "block";
+      document.querySelector(`.${name}`).style.display = "flex";
     }
 
     // special case for minesweeper icon click
