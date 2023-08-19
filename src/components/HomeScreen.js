@@ -34,6 +34,18 @@ export default function HomeScreen() {
 
   const handleClick = (ref, name) => {
     setSelected(name);
+    console.log(name);
+    if (document.querySelector(`.${name}`)) {
+      document.querySelector(`.${name}`).style.display = "block";
+    }
+
+    // special case for minesweeper icon click
+    if (name === "Minesweeper") {
+      if (document.querySelector(`.gameBoard`)) {
+        document.querySelector(`.gameBoard`).style.display = "flex";
+      }
+    }
+
     if (!pages.includes(name)) {
       setPages([...pages, name]);
     }
