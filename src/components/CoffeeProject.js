@@ -112,10 +112,10 @@ export default function MtgProject({ pages, setPages }) {
           their cart data even if they navigate away from the page.
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/burgerRestaurant">
+          <a target="_blank" href="https://github.com/Nmelms/coffee-commerce">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmburgers.netlify.app/">
+          <a target="_blank" href="https://coffeecommerce.nickmelms.dev">
             <FontAwesomeIcon
               title="live project link"
               size="2x"
