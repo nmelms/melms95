@@ -102,14 +102,14 @@ export default function MtgProject({ pages, setPages }) {
         />
         <h2>About This Project</h2>
         <p>
-          This website is a sample brochure site for a fictional burger
-          restaurant called Burger Bun. This site allows users to browse the
-          menu, view pictures, and learn more about the restaurant, such as its
-          store hours. In creating this project, my goal was to build a simple
-          and effective website for a small business. To achieve this, I used
-          vanilla JavaScript and relied on Bootstrap for styling assistance. The
-          result is a clean, responsive, and user-friendly site that showcases
-          the restaurant's offerings and information.
+          This is a fullstack ecommerce site created in Next.js and uses
+          headless WooCommerce for content management. I've integrated Stripe
+          for payment processing and use webhooks to keep the order status in
+          WooCommerce up-to-date. Users with access have the ability to add and
+          edit products, tweak pricing and stock, create sales, view new orders,
+          and much more. Additionally, I've set up API routes to communicate
+          with the server and implemented cookies, allowing users to maintain
+          their cart data even if they navigate away from the page.
         </p>
         <div className="icons">
           <a href="https://github.com/Nmelms/burgerRestaurant">
