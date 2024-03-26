@@ -98,6 +98,12 @@ export default function Projects({ pages, setPages, display }) {
       </nav>
       <div className="projectsBody">
         <Icon
+          handleClick={(e) => handleIconClick(e, "CoffeeCommerce")}
+          name="Coffee Commerce"
+          imgSrc={file}
+          alt="Coffee site"
+        />
+        <Icon
           handleClick={(e) => handleIconClick(e, "National Parks")}
           name="National Parks"
           imgSrc={file}
@@ -132,12 +138,6 @@ export default function Projects({ pages, setPages, display }) {
           name="MTG Deck Builder"
           imgSrc={file}
           alt="Deck builder"
-        />
-        <Icon
-          handleClick={(e) => handleIconClick(e, "CoffeeCommerce")}
-          name="CoffeeCommerce"
-          imgSrc={file}
-          alt="Coffee site"
         />
       </div>
     </div>
