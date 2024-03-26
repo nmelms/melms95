@@ -133,6 +133,12 @@ export default function Projects({ pages, setPages, display }) {
           imgSrc={file}
           alt="Deck builder"
         />
+        <Icon
+          handleClick={(e) => handleIconClick(e, "CoffeeCommerce")}
+          name="CoffeeCommerce"
+          imgSrc={file}
+          alt="Coffee site"
+        />
       </div>
     </div>
   );

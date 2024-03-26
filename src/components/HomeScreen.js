@@ -15,6 +15,7 @@ import PlanetProject from "./PlanetProject";
 import MineSweeper from "./minesweeper/MineSweeper";
 import MtgProject from "./MtgProject";
 import BurgerProject from "./BurgerProject";
+import CoffeeProject from "./CoffeeProject";
 import Pokedex from "./Pokedex";
 
 export default function HomeScreen() {
@@ -153,6 +154,14 @@ export default function HomeScreen() {
       )}
       {pages.includes("Pokedex") && (
         <Pokedex
+          pages={pages}
+          setPages={setPages}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
+      {pages.includes("CoffeeCommerce") && (
+        <CoffeeProject
           pages={pages}
           setPages={setPages}
           setSelected={setSelected}
