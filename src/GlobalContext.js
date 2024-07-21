@@ -4,6 +4,7 @@ const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
   const planetRef = useRef();
+  const carouselRef = useRef();
   const bioRef = useRef();
   const pokeRef = useRef();
   const burgerRef = useRef();
@@ -40,6 +41,7 @@ export function GlobalProvider({ children }) {
         planetRef,
         bioRef,
         pokeRef,
+        carouselRef,
         burgerRef,
         projectRef,
         invoiceRef,

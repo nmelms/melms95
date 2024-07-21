@@ -10,6 +10,7 @@ import mine from "../assets/mine.png";
 import Window from "./Window";
 import Projects from "./Projects";
 import NpsProject from "./NpsProject";
+import CarouselProject from "./CarouselProject";
 import InvoiceProject from "./InvoiceProject";
 import PlanetProject from "./PlanetProject";
 import MineSweeper from "./minesweeper/MineSweeper";
@@ -87,6 +88,17 @@ export default function HomeScreen() {
           setPages={setPages}
           activePages={activePages}
           setActivePages={setActivePages}
+        />
+      )}
+
+      {pages.includes("Carousel") && (
+        <CarouselProject
+          display={pages.includes("Carousel") ? "flex" : "none"}
+          selected={selected}
+          handleClick={() => handleClick("Carousel")}
+          setSelected={setSelected}
+          pages={pages}
+          setPages={setPages}
         />
       )}
 

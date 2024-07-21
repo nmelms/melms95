@@ -104,6 +104,12 @@ export default function Projects({ pages, setPages, display }) {
           alt="Coffee site"
         />
         <Icon
+          handleClick={(e) => handleIconClick(e, "Carousel")}
+          name="Fancy Carousel"
+          imgSrc={file}
+          alt="Carousel Project"
+        />
+        <Icon
           handleClick={(e) => handleIconClick(e, "National Parks")}
           name="National Parks"
           imgSrc={file}
