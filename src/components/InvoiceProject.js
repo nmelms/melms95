@@ -103,10 +103,10 @@ export default function InvoiceProject() {
           the rest myself.
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/invoice-app">
+          <a target="_blank" href="https://github.com/Nmelms/invoice-app">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmelmsinvoice.netlify.app/">
+          <a target="_blank" href="https://nmelmsinvoice.netlify.app/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

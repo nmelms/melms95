@@ -113,10 +113,10 @@ export default function MtgProject({ pages, setPages }) {
           the future and add the ability to sort them by generation.
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/pokedex">
+          <a target="_blank" href="https://github.com/Nmelms/pokedex">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmpokedex.netlify.app/">
+          <a target="_blank" href="https://nmpokedex.netlify.app/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

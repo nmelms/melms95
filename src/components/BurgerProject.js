@@ -110,10 +110,10 @@ export default function MtgProject({ pages, setPages }) {
           the restaurant's offerings and information.
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/burgerRestaurant">
+          <a target="_blank" href="https://github.com/Nmelms/burgerRestaurant">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmburgers.netlify.app/">
+          <a target="_blank" href="https://nmburgers.netlify.app/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

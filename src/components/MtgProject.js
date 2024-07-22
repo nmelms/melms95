@@ -111,10 +111,10 @@ export default function MtgProject({ pages, setPages }) {
           how to play the game you can check out some of the amazing artwork!
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/deck_builder">
+          <a target="_blank" href="https://github.com/Nmelms/deck_builder">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://mtgdeckbuilder.netlify.app/">
+          <a target="_blank" href="https://mtgdeckbuilder.netlify.app/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

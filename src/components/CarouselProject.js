@@ -117,10 +117,10 @@ export default function CarouselProject({ pages, setPages }) {
           source if you're curious how I built it!
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/planets">
+          <a target="_blank" href="https://github.com/Nmelms/planets">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://carousel.nickmelms.dev/">
+          <a target="_blank" href="https://carousel.nickmelms.dev/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

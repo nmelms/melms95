@@ -117,10 +117,10 @@ export default function PlanetProject({ pages, setPages }) {
           about our solar system!
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/planets">
+          <a target="_blank" href="https://github.com/Nmelms/planets">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmelmsplanetfacts.netlify.app/">
+          <a target="_blank" href="https://nmelmsplanetfacts.netlify.app/">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

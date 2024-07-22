@@ -110,10 +110,10 @@ export default function NpsProject() {
           exploring America's National Parks!
         </p>
         <div className="icons">
-          <a href="https://github.com/Nmelms/national-parks">
+          <a target="_blank" href="https://github.com/Nmelms/national-parks">
             <FontAwesomeIcon title="github icon" size="2x" icon={faGithub} />
           </a>
-          <a href="https://nmelmsnps.netlify.app">
+          <a target="_blank" href="https://nmelmsnps.netlify.app">
             <FontAwesomeIcon
               title="live project link"
               size="2x"

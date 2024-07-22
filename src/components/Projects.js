@@ -110,16 +110,16 @@ export default function Projects({ pages, setPages, display }) {
           alt="Carousel Project"
         />
         <Icon
+          handleClick={(e) => handleIconClick(e, "Burger")}
+          name="Burger Restaurant"
+          imgSrc={file}
+          alt="burger restaurant project"
+        />
+        <Icon
           handleClick={(e) => handleIconClick(e, "National Parks")}
           name="National Parks"
           imgSrc={file}
           alt="national parks project"
-        />
-        <Icon
-          handleClick={(e) => handleIconClick(e, "Invoice App")}
-          name="Invoice App"
-          imgSrc={file}
-          alt="invoice project"
         />
         <Icon
           handleClick={(e) => handleIconClick(e, "Planet Facts")}
@@ -128,16 +128,16 @@ export default function Projects({ pages, setPages, display }) {
           alt="planet facts project"
         />
         <Icon
+          handleClick={(e) => handleIconClick(e, "Invoice App")}
+          name="Invoice App"
+          imgSrc={file}
+          alt="invoice project"
+        />
+        <Icon
           handleClick={(e) => handleIconClick(e, "Pokedex")}
           name="Pokedex"
           imgSrc={file}
           alt="Pokedex project"
-        />
-        <Icon
-          handleClick={(e) => handleIconClick(e, "Burger")}
-          name="Burger Restaurant"
-          imgSrc={file}
-          alt="burger restaurant project"
         />
         <Icon
           handleClick={(e) => handleIconClick(e, "MTG Deck Builder")}
