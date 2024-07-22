@@ -6,6 +6,12 @@ import Draggable from "react-draggable";
 import jsSVG from "../assets/js.svg";
 import reactSVG from "../assets/react.svg";
 import htmlSVG from "../assets/html.svg";
+import craftPNG from "../assets/craftcms.png";
+import tailwindSVG from "../assets/tailwind-css.svg";
+import astroPNG from "../assets/Astro.png";
+import nextSVG from "../assets/next-js.svg";
+import typescriptSVG from "../assets/typescript-icon.svg";
+import twigPNG from "../assets/twig.png";
 import cssSVG from "../assets/css.svg";
 import firebaseSVG from "../assets/firebase.svg";
 import jestSVG from "../assets/jest.svg";
@@ -118,6 +124,12 @@ export default function Window({ pages, setPages, display }) {
         </h2>
         <div className="logos">
           <img alt="react " className="techLogo" src={reactSVG} />
+          <img alt="typescript " className="techLogo" src={typescriptSVG} />
+          <img alt="next " className="techLogo" src={nextSVG} />
+          <img alt="astro " className="techLogo" src={astroPNG} />
+          <img alt="craft cms " className="techLogo" src={craftPNG} />
+          <img alt="twig " className="techLogo" src={twigPNG} />
+          <img alt="tailwind " className="techLogo" src={tailwindSVG} />
           <img alt="javascript " className="techLogo" src={jsSVG} />
           <img alt="jest " className="techLogo" src={jestSVG} />
           <img alt="firebase " className="techLogo" src={firebaseSVG} />
@@ -125,7 +137,10 @@ export default function Window({ pages, setPages, display }) {
           <img alt="css " className="techLogo" src={cssSVG} />
         </div>
         <div className="techText">
-          <p>React/Javascript/Jest/Firebase/HTML/CSS</p>
+          <p>
+            React/Typescript/Next.js/Astro/Craft CMS/Twig/Tailwind
+            CSS/Javascript/Jest/Firebase/HTML/CSS
+          </p>
         </div>
       </div>
     </div>
