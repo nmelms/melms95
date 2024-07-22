@@ -102,10 +102,14 @@ export default function Window({ pages, setPages, display }) {
           </b>
         </h2>
         <p>
-          I'm Nick, a front-end web developer. I make responsive web
-          applications that look good and are easy to use. I enjoy keeping up
-          with the latest technologies and use React to build the majority of my
-          sites. When I'm not coding, I enjoy exploring the outdoors.
+          I'm Nick, a front-end web developer currently working at a marketing
+          agency in Charlotte, NC. I specialize in maintaining and enhancing
+          multiple client websites in the manufacturing industry, utilizing
+          Craft CMS and Twig templating language. Additionally, I have
+          experience with various other technologies, including React and
+          Next.js. Feel free to explore my portfolio and check out the projects
+          I've created. If you have any questions or just want to chat feel free
+          to shoot me an email!
         </p>
         <h2 className="bioTitle">
           <b>
