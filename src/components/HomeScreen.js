@@ -3,6 +3,7 @@ import GlobalContext from "../GlobalContext";
 import StartBar from "./StartBar";
 import StartMenu from "./StartMenu";
 import Icon from "./Icon";
+import blog from "../assets/blog.png";
 import recycle from "../assets/recycle.png";
 import mycomputer from "../assets/mycomputer.png";
 import folder from "../assets/folder2.png";
@@ -64,6 +65,9 @@ export default function HomeScreen() {
           alt="bio"
           imgSrc={mycomputer}
         />
+        <a target="_blank" href="https://blog.nickmelms.dev">
+          <Icon name="Blog" alt="blogs" imgSrc={blog} />
+        </a>
         <Icon name="Recycle Bin" alt="recycle bin" imgSrc={recycle} />
         <Icon
           handleClick={(e) => handleClick(e, "Projects")}
